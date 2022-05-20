@@ -1,12 +1,10 @@
-import { Component, OnInit, ElementRef, ViewChild,OnDestroy } from '@angular/core';
-import { RequerimientoService } from '../../../services/requerimiento.service';
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import { RequerimientoService } from "../../../services/requerimiento.service";
 import { NgxSpinnerService } from "ngx-spinner";
-import { Router, ActivatedRoute } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
-import {formatDate } from '@angular/common';
-import { Subject } from 'rxjs';
-import { DataTableDirective } from "angular-datatables";
-import * as moment from 'moment';
+import { Router, ActivatedRoute } from "@angular/router";
+import { Usuario } from "src/app/models/usuario";
+import { Subject } from "rxjs";
+import * as moment from "moment";
 
 @Component({
   selector: "app-edit-registro-audio",
@@ -716,7 +714,3 @@ export class EditFacturacionComponent implements OnInit {
     this.spinner.hide();
   }
 }
-
-
-
-

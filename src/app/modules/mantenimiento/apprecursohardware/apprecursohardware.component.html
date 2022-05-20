@@ -1,104 +1,160 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Detalle Hardware</h1>
-            </div>
-            <div class="col-sm-6" style="text-align: right;">
-                <h6></h6>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Detalle Hardware</h1>
+      </div>
+      <div class="col-sm-6" style="text-align: right">
+        <h6></h6>
+      </div>
     </div>
-    <!-- /.container-fluid -->
+  </div>
+  <!-- /.container-fluid -->
 </section>
 
-
 <section class="content">
-    <div class="container-fluid">
-        <div class="card card-primary">
-            <form role="form">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Tipo</label>
-                                <select #selectList1 class="custom-select" (change)="getInfoTipo(selectList1.value)" [(ngModel)]="datosHardware.idTipo" [ngModelOptions]="{standalone: true}">
-                                    <option *ngFor="let tip of tipo" [value]="tip.id">
-                                        {{tip.nombre}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Marca</label>
-                                <select #selectList2 class="custom-select" (change)="getInfoMarca(selectList2.value)" [(ngModel)]="datosHardware.idMarca" [ngModelOptions]="{standalone: true}">
-                                    <option *ngFor="let mar of marca" [value]="mar.id">
-                                        {{mar.nombre}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Modelo</label>
-                                <input type="text" class="form-control" [(ngModel)]="datosHardware.modelo" [ngModelOptions]="{standalone: true}">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Serie</label>
-                                <input type="text" class="form-control" [(ngModel)]="datosHardware.serie" [ngModelOptions]="{standalone: true}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>IMEI (opcional)</label>
-                                <input type="text" class="form-control" [(ngModel)]="datosHardware.imei" [ngModelOptions]="{standalone: true}">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Descripcion</label>
-                                <textarea class="form-control" rows="3" style="resize: none;" [(ngModel)]="datosHardware.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Observacion</label>
-                                <textarea class="form-control" rows="3" style="resize: none;" [(ngModel)]="datosHardware.observacion" [ngModelOptions]="{standalone: true}"></textarea>
-                                <!--<select #selectList1 class="custom-select" (change)="getInfoProyecto(selectList1.value)">
+  <div class="container-fluid">
+    <div class="card card-primary">
+      <form role="form">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Tipo</label>
+                <select
+                  #selectList1
+                  class="custom-select"
+                  (change)="getInfoTipo(selectList1.value)"
+                  [(ngModel)]="datosHardware.idTipo"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option *ngFor="let tip of tipo" [value]="tip.id">
+                    {{ tip.nombre }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Marca</label>
+                <select
+                  #selectList2
+                  class="custom-select"
+                  (change)="getInfoMarca(selectList2.value)"
+                  [(ngModel)]="datosHardware.idMarca"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option *ngFor="let mar of marca" [value]="mar.id">
+                    {{ mar.nombre }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Modelo</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="datosHardware.modelo"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Serie</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="datosHardware.serie"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>IMEI (opcional)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="datosHardware.imei"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Descripcion</label>
+                <textarea
+                  class="form-control"
+                  rows="3"
+                  style="resize: none"
+                  [(ngModel)]="datosHardware.descripcion"
+                  [ngModelOptions]="{ standalone: true }"
+                ></textarea>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Observacion</label>
+                <textarea
+                  class="form-control"
+                  rows="3"
+                  style="resize: none"
+                  [(ngModel)]="datosHardware.observacion"
+                  [ngModelOptions]="{ standalone: true }"
+                ></textarea>
+                <!--<select #selectList1 class="custom-select" (change)="getInfoProyecto(selectList1.value)">
                                     <option *ngFor="let pro of proyectos" [value]="pro.id" (ngModel)="datosPersonalEditar.proyecto">
                                         {{pro.codigo}}
                                     </option>
                                 </select>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-primary" (click)="updateRecursoHardware()" #btnEditarHardware>Guardar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="card-footer">
-        <div class="row">
-            <div class="col-12">
-                <button type="button" class="btn btn-primary" (click)="regresarBandeja()">Regresar</button>
+              </div>
             </div>
+          </div>
         </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-12 text-center">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="updateRecursoHardware()"
+                #btnEditarHardware
+              >
+                Guardar
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-12">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="regresarBandeja()"
+        >
+          Regresar
+        </button>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
-    <p style="color: white"> Loading... </p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
 </ngx-spinner>

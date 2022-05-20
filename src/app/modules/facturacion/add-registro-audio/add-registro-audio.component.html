@@ -23,52 +23,65 @@
       <form role="form">
         <div class="card-body">
           <div class="row">
-
             <!-- left column -->
             <div class="col-md-3">
               <div class="form-group">
                 <label>Código de Factura</label>
-                <input type="text" [disabled]="inicioRegistro" class="form-control">
+                <input
+                  type="text"
+                  [disabled]="inicioRegistro"
+                  class="form-control"
+                />
               </div>
             </div>
 
-              <div class="col-md-3">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
                     <label>Periodo - Año</label>
-                    <select class="custom-select" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.periodo" [ngModelOptions]="{standalone: true}"  >
-                          <option value="2025">2025</option>
-                          <option value="2024">2024</option>
-                          <option value="2023">2023</option>
-                          <option value="2022">2022</option>
-                          <option value="2021">2021</option>
-                          <option value="2020">2020</option>
-                          <option value="2019">2019</option>
-                          <option value="2018">2018</option>
+                    <select
+                      class="custom-select"
+                      [disabled]="!inicioRegistro"
+                      [(ngModel)]="registroAudio.periodo"
+                      [ngModelOptions]="{ standalone: true }"
+                    >
+                      <option value="2025">2025</option>
+                      <option value="2024">2024</option>
+                      <option value="2023">2023</option>
+                      <option value="2022">2022</option>
+                      <option value="2021">2021</option>
+                      <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
                     </select>
-                    </div>
                   </div>
+                </div>
 
-                  <div class="col-sm-6">
-                    <div class="form-group">
+                <div class="col-sm-6">
+                  <div class="form-group">
                     <label>Periodo - Mes</label>
-                      <select class="custom-select" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.mes" [ngModelOptions]="{standalone: true}"  >
-                        <option value="01">01-Enero</option>
-                        <option value="02">02-Febrero</option>
-                        <option value="03">03-Marzo</option>
-                        <option value="04">04-Abril</option>
-                        <option value="05">05-Mayo</option>
-                        <option value="06">06-Junio</option>
-                        <option value="07">07-Julio</option>
-                        <option value="08">08-Agosto</option>
-                        <option value="09">09-Setiembre</option>
-                        <option value="10">10-Octubre</option>
-                        <option value="11">11-Noviembre</option>
-                        <option value="12">12-Diciembre</option>
-                      </select>
+                    <select
+                      class="custom-select"
+                      [disabled]="!inicioRegistro"
+                      [(ngModel)]="registroAudio.mes"
+                      [ngModelOptions]="{ standalone: true }"
+                    >
+                      <option value="01">01-Enero</option>
+                      <option value="02">02-Febrero</option>
+                      <option value="03">03-Marzo</option>
+                      <option value="04">04-Abril</option>
+                      <option value="05">05-Mayo</option>
+                      <option value="06">06-Junio</option>
+                      <option value="07">07-Julio</option>
+                      <option value="08">08-Agosto</option>
+                      <option value="09">09-Setiembre</option>
+                      <option value="10">10-Octubre</option>
+                      <option value="11">11-Noviembre</option>
+                      <option value="12">12-Diciembre</option>
+                    </select>
                   </div>
-                  </div>
+                </div>
               </div>
             </div>
 
@@ -79,10 +92,17 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>Tipo de Liquidación</label>
-               <select class="custom-select"  [(ngModel)]="registroAudio.idLiquidaciones" [ngModelOptions]="{standalone: true}"  >
-                      <option *ngFor="let leven of listaLiquidaciones" [value]="leven.idCorrelativo">
-                        {{leven.valorTexto1}}
-                      </option>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="registroAudio.idLiquidaciones"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option
+                    *ngFor="let leven of listaLiquidaciones"
+                    [value]="leven.idCorrelativo"
+                  >
+                    {{ leven.valorTexto1 }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -90,20 +110,33 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>Proyecto</label>
-              <!--  <select class="custom-select"  [(ngModel)]="registroAudio.idProyecto" [ngModelOptions]="{standalone: true}" (change)="onSelect($event.target.value)"  > -->
-               <select class="custom-select"  [(ngModel)]="registroAudio.idProyecto" [ngModelOptions]="{standalone: true}"  >
-                      <option value="0">--Seleccione--</option>
-                      <option *ngFor="let leven of listaProyectos" [value]="leven.idCorrelativo">
-                        {{leven.valorTexto1}}
-                      </option>
+                <!--  <select class="custom-select"  [(ngModel)]="registroAudio.idProyecto" [ngModelOptions]="{standalone: true}" (change)="onSelect($event.target.value)"  > -->
+                <select
+                  class="custom-select"
+                  [(ngModel)]="registroAudio.idProyecto"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option value="0">--Seleccione--</option>
+                  <option
+                    *ngFor="let leven of listaProyectos"
+                    [value]="leven.idCorrelativo"
+                  >
+                    {{ leven.valorTexto1 }}
+                  </option>
                 </select>
               </div>
             </div>
-           <!--  {{ listaGestores | json }} -->
+            <!--  {{ listaGestores | json }} -->
             <div class="col-md-3">
               <div class="form-group">
                 <label>Subservicio</label>
-                <input type="text" class="form-control" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.subservicio" [ngModelOptions]="{standalone: true}">
+                <input
+                  type="text"
+                  class="form-control"
+                  [disabled]="!inicioRegistro"
+                  [(ngModel)]="registroAudio.subservicio"
+                  [ngModelOptions]="{ standalone: true }"
+                />
               </div>
             </div>
 
@@ -111,40 +144,58 @@
               <div class="form-group">
                 <label>Gestors</label>
 
-               <!--  <select class="custom-select" id="id_gestor">
+                <!--  <select class="custom-select" id="id_gestor">
                       <option *ngFor="let gest of listaGestores" [value]="gest.id">
                         {{gest.valor_texto_1}}
                       </option>
                 </select> -->
-                 <select class="custom-select" [(ngModel)]="registroAudio.idGestor"
-                   [ngModelOptions]="{standalone: true}">
-                   <option value="0">--Seleccione--</option>
-                   <option *ngFor="let leven of listaGestores" [value]="leven.idCorrelativo">
-                     {{leven.valorTexto1}}
-                   </option>
-                 </select>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="registroAudio.idGestor"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option value="0">--Seleccione--</option>
+                  <option
+                    *ngFor="let leven of listaGestores"
+                    [value]="leven.idCorrelativo"
+                  >
+                    {{ leven.valorTexto1 }}
+                  </option>
+                </select>
               </div>
             </div>
 
             <div class="col-md-3">
               <div class="form-group">
                 <label>Importe</label>
-                <input type="text" class="form-control" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.venta_declarada" [ngModelOptions]="{standalone: true}">
+                <input
+                  type="text"
+                  class="form-control"
+                  [disabled]="!inicioRegistro"
+                  [(ngModel)]="registroAudio.venta_declarada"
+                  [ngModelOptions]="{ standalone: true }"
+                />
               </div>
             </div>
 
-              <div class="col-md-3">
+            <div class="col-md-3">
               <div class="form-group">
                 <label>Estado</label>
-               <select class="custom-select"  [(ngModel)]="registroAudio.idEstado" [ngModelOptions]="{standalone: true}"  >
-                      <option *ngFor="let leven of listaEstado" [value]="leven.idCorrelativo">
-                        {{leven.valorTexto1}}
-                      </option>
-
+                <select
+                  class="custom-select"
+                  [(ngModel)]="registroAudio.idEstado"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option
+                    *ngFor="let leven of listaEstado"
+                    [value]="leven.idCorrelativo"
+                  >
+                    {{ leven.valorTexto1 }}
+                  </option>
                 </select>
               </div>
             </div>
-             <!-- <div class="col-md-3">
+            <!-- <div class="col-md-3">
               <div class="form-group">
                 <label for="exampleInputFile">File inpute</label>
                 <div class="input-group">
@@ -181,21 +232,12 @@
               </div>
             </div> -->
 
-
-
             <!-- left column -->
-
-
-
-
-
           </div>
         </div>
         <!-- /.card-body -->
       </form>
     </div>
-
-
 
     <!-- /.comentario -->
     <div class="card card-primary">
@@ -220,7 +262,6 @@
         </div>
       </form>
     </div>
-
 
     <!-- /.card -->
     <div class="row">

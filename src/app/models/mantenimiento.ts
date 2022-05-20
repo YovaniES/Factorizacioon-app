@@ -1,43 +1,42 @@
 export interface PersonalInterface {
-    id: number,
-    codigoCorporativo: string,
-    nombres: string,
-    apellidoPaterno: string,
-    apellidoMaterno: string,
-    dni: string,
-    correo: string,
-    fechaIngreso: string,
-    fechaNacimiento: string,
-    idProyecto: number,
-    idPerfil: number,
-    estado: number
+  id: number;
+  codigoCorporativo: string;
+  nombres: string;
+  apellidoPaterno: string;
+  apellidoMaterno: string;
+  dni: string;
+  correo: string;
+  fechaIngreso: string;
+  fechaNacimiento: string;
+  idProyecto: number;
+  idPerfil: number;
+  estado: number;
 }
 
+export class PersonalClass {
+  public id: number;
+  public codigoCorporativo: string;
+  public nombres: string;
+  public apellidoPaterno: string;
+  public apellidoMaterno: string;
+  public dni: string;
+  public correo: string;
+  public fechaIngreso: string;
+  public fechaNacimiento: string;
+  public idProyecto: EntidadClass;
+  public idPerfil: EntidadClass;
+  public estado: number;
+  /*entidadClass*/
+  public idTabla: number;
+  public idCorrelativo: number;
+  public valorTexto1: string;
+  public valorTexto2: string;
+  public valorNumerico1: number;
+  public fechaCreacionBd: string;
+  public fechaActualizacionBd: string;
+  public idUsuarioCreacion: number;
 
-export class PersonalClass{
-    public id: number;
-    public codigoCorporativo: string;
-    public nombres: string;
-    public apellidoPaterno: string;
-    public apellidoMaterno: string;
-    public dni: string;
-    public correo: string;
-    public fechaIngreso: string;
-    public fechaNacimiento: string;
-    public idProyecto: EntidadClass;
-    public idPerfil: EntidadClass;
-    public estado: number;
-    /*entidadClass*/
-    public idTabla:number;
-    public idCorrelativo:number;
-    public valorTexto1:string;
-    public valorTexto2:string;
-    public valorNumerico1:number;
-    public fechaCreacionBd:string;
-    public fechaActualizacionBd:string;
-    public idUsuarioCreacion:number;
-
-    /*constructor(id?:number,codigoCorporativo?:string,nombres?:string,apellidoPaterno?:string,apellidoMaterno?:string,dni?:string,correo?:string,fechaIngreso?:string,fechaNacimiento?:string,idProyecto?:EntidadClass,idPerfil?:EntidadClass,estado?:number){
+  /*constructor(id?:number,codigoCorporativo?:string,nombres?:string,apellidoPaterno?:string,apellidoMaterno?:string,dni?:string,correo?:string,fechaIngreso?:string,fechaNacimiento?:string,idProyecto?:EntidadClass,idPerfil?:EntidadClass,estado?:number){
         this.id = id;
         this.codigoCorporativo = codigoCorporativo;
         this.nombres = nombres;
@@ -53,19 +52,18 @@ export class PersonalClass{
     }*/
 }
 
-
-export class EntidadClass extends PersonalClass{
-    id:number;
-    idTabla:number;
-    idCorrelativo:number;
-    valorTexto1:string;
-    valorTexto2:string;
-    valorNumerico1:number;
-    fechaCreacionBd:string;
-    fechaActualizacionBd:string;
-    idUsuarioCreacion:number;
-    estado:number;
-    /*constructor(id?:number,idTabla?:number,idCorrelativo?:number,valorTexto1?:string,valorTexto2?:string,valorNumerico1?:number,fechaCreacionBd?:string,fechaActualizacionBd?:string,idUsuarioCreacion?:number,estado?:number) {
+export class EntidadClass extends PersonalClass {
+  id: number;
+  idTabla: number;
+  idCorrelativo: number;
+  valorTexto1: string;
+  valorTexto2: string;
+  valorNumerico1: number;
+  fechaCreacionBd: string;
+  fechaActualizacionBd: string;
+  idUsuarioCreacion: number;
+  estado: number;
+  /*constructor(id?:number,idTabla?:number,idCorrelativo?:number,valorTexto1?:string,valorTexto2?:string,valorNumerico1?:number,fechaCreacionBd?:string,fechaActualizacionBd?:string,idUsuarioCreacion?:number,estado?:number) {
         this.id = id;
         this.idTabla = idTabla;
         this.idCorrelativo = idCorrelativo;
@@ -79,13 +77,10 @@ export class EntidadClass extends PersonalClass{
     }*/
 }
 
-
-
-
 export interface BusquedaF {
-    list:Array<any>
+  list: Array<any>;
 }
 
 export interface escalar {
-    mapValue:number
+  mapValue: number;
 }

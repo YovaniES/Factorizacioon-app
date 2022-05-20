@@ -1,125 +1,167 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Mantenimiento Recurso Hardware</h1>
-            </div>
-            <div class="col-sm-6">
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Mantenimiento Recurso Hardware</h1>
+      </div>
+      <div class="col-sm-6"></div>
     </div>
-    <!-- /.container-fluid -->
+  </div>
+  <!-- /.container-fluid -->
 </section>
 
 <!-- Main content -->
 <section class="content">
-    <div class="container-fluid">
-        <!-- Buscador -->
-        <div class="card card-primary">
-            <!-- form start -->
-            <form role="form">
-                <div class="card-body">
-                    <div class="row">
-                        <!-- left column -->
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Serie</label>
-                                <input type="text" class="form-control" [(ngModel)]="serie" [ngModelOptions]="{standalone: true}">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Tipo</label>
-                                <select #selectList3 class="custom-select" (change)="getInfoTipoBuscar(selectList3.value)">
-                                    <option [value]="0">--Seleccione Tipo--</option>
-                                    <option *ngFor="let tip of tipo" [value]="tip.id">
-                                        {{tip.nombre}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Cód.Proyecto</label>
-                                <select #selectList4 class="custom-select" (change)="getInfoMarcaBuscar(selectList4.value)">
-                                    <option [value]="0">--Seleccione Marca--</option>
-                                    <option *ngFor="let mar of marca" [value]="mar.id">
-                                        {{mar.nombre}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Estado</label>
-                                <select #selectList5 class="custom-select" (change)="getInfoEstadoBuscar(selectList5.value)">
-                                    <option [value]="1000">--Seleccione Estado--</option>
-                                    <option [value]="0">
-                                        Reservado
-                                    </option>
-                                    <option [value]="1">
-                                        Disponible
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>IMEI</label>
-                                <input type="text" class="form-control" [(ngModel)]="imei" [ngModelOptions]="{standalone: true}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-primary" (click)="buscarRecursoHardware()">Buscar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!-- /.card -->
-
-        <div class="card card-default">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarRecurso" (click)="btnAgregarHardware()">Agregar Hardware</button> &nbsp; &nbsp;
-                        <!--<button type="button" class="btn btn-primary" (click)="irHacia()">Agregar Detalles</button> &nbsp; &nbsp;-->
-                    </div>
-                </div>
+  <div class="container-fluid">
+    <!-- Buscador -->
+    <div class="card card-primary">
+      <!-- form start -->
+      <form role="form">
+        <div class="card-body">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Serie</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="serie"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive table-sm">
-                <table class="table table-hover" style="width: 2400px;">
-                    <thead>
-                        <tr>
-                            <th style="width: 50px;text-align: center;">Accion</th>
-                            <th style="width: 100px;text-align: center;">IdRecurso</th>
-                            <th style="width: 200px;text-align: center;">Tipo</th>
-                            <th style="width: 200px;text-align: center;">Marca</th>
-                            <th style="width: 300px;text-align: center;">Equipo</th>
-                            <th style="width: 220px;text-align: center;">Modelo</th>
-                            <th style="width: 200px;text-align: center;">Serie</th>
-                            <th style="width: 200px;text-align: center;">imei</th>
-                            <th style="width: 200px;text-align: center;">Estado Recurso</th>
-                            <th style="width: 380px;text-align: center;">Persona Asignada</th>
-                            <th style="width: 200px;text-align: center;">Cod.Corporativo</th>
-                            <th style="width: 200px;text-align: center;">Proyecto</th>
-                            <th style="width: 300px;text-align: center;">Observacion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let re of recurso | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalRequerimientos }">
-                            <td style="text-align: center;">
-                                <!--<a routerLink="/detalle/{{re.id_recurso}}">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Tipo</label>
+                <select
+                  #selectList3
+                  class="custom-select"
+                  (change)="getInfoTipoBuscar(selectList3.value)"
+                >
+                  <option [value]="0">--Seleccione Tipo--</option>
+                  <option *ngFor="let tip of tipo" [value]="tip.id">
+                    {{ tip.nombre }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Cód.Proyecto</label>
+                <select
+                  #selectList4
+                  class="custom-select"
+                  (change)="getInfoMarcaBuscar(selectList4.value)"
+                >
+                  <option [value]="0">--Seleccione Marca--</option>
+                  <option *ngFor="let mar of marca" [value]="mar.id">
+                    {{ mar.nombre }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Estado</label>
+                <select
+                  #selectList5
+                  class="custom-select"
+                  (change)="getInfoEstadoBuscar(selectList5.value)"
+                >
+                  <option [value]="1000">--Seleccione Estado--</option>
+                  <option [value]="0">Reservado</option>
+                  <option [value]="1">Disponible</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>IMEI</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="imei"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-12 text-center">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="buscarRecursoHardware()"
+              >
+                Buscar
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- /.card -->
+
+    <div class="card card-default">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-12">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#modalAgregarRecurso"
+              (click)="btnAgregarHardware()"
+            >
+              Agregar Hardware
+            </button>
+            &nbsp; &nbsp;
+            <!--<button type="button" class="btn btn-primary" (click)="irHacia()">Agregar Detalles</button> &nbsp; &nbsp;-->
+          </div>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body table-responsive table-sm">
+        <table class="table table-hover" style="width: 2400px">
+          <thead>
+            <tr>
+              <th style="width: 50px; text-align: center">Accion</th>
+              <th style="width: 100px; text-align: center">IdRecurso</th>
+              <th style="width: 200px; text-align: center">Tipo</th>
+              <th style="width: 200px; text-align: center">Marca</th>
+              <th style="width: 300px; text-align: center">Equipo</th>
+              <th style="width: 220px; text-align: center">Modelo</th>
+              <th style="width: 200px; text-align: center">Serie</th>
+              <th style="width: 200px; text-align: center">imei</th>
+              <th style="width: 200px; text-align: center">Estado Recurso</th>
+              <th style="width: 380px; text-align: center">Persona Asignada</th>
+              <th style="width: 200px; text-align: center">Cod.Corporativo</th>
+              <th style="width: 200px; text-align: center">Proyecto</th>
+              <th style="width: 300px; text-align: center">Observacion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let re of recurso
+                  | paginate
+                    : {
+                        itemsPerPage: 10,
+                        currentPage: page,
+                        totalItems: totalRequerimientos
+                      }
+              "
+            >
+              <td style="text-align: center">
+                <!--<a routerLink="/detalle/{{re.id_recurso}}">
                                     <i id="icono" class="far fa-eye"></i>
                                 </a>
                                 &nbsp;
@@ -131,85 +173,133 @@
                                     <i id="icono" class="fas fa-exchange-alt"></i>
                                 </a>
                                 &nbsp;-->
-                                <a routerLink="/recursoHardware/{{re.id_recurso}}">
-                                    <i id="icono" class="far fa-edit" data-toggle="tooltip" data-placement="top" title="Editar Recurso"></i>
-                                </a>
-                                &nbsp;
-                                <a type="button" data-toggle="modal" data-target="#modalEliminar" (click)="abrirEliminar(re.id_recurso)">
-                                    <i id="icono" class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i>
-                                </a>
-                            </td>
-                            <td style="text-align: center;">{{re.id_recurso}}</td>
-                            <td style="text-align: center;">{{re.tipo}}</td>
-                            <td style="text-align: center;">{{re.marca}}</td>
-                            <td style="text-align: center;">{{re.equipo}}</td>
-                            <td style="text-align: center;">{{re.modelo}}</td>
-                            <td style="text-align: center;">{{re.serie}}</td>
-                            <td style="text-align: center;">{{re.imei}}</td>
-                            <td style="text-align: center;">{{re.estado_recurso}}</td>
-                            <td style="text-align: center;">{{re.persona_asignada}}</td>
-                            <td style="text-align: center;">{{re.codigo_corporativo}}</td>
-                            <td style="text-align: center;">{{re.proyecto}}</td>
-                            <td style="text-align: center;">{{re.observaciON}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer pb-0 pt-3">
-                <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
-            </div>
-        </div>
-        <!-- /.card -->
-
+                <a routerLink="/recursoHardware/{{ re.id_recurso }}">
+                  <i
+                    id="icono"
+                    class="far fa-edit"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Editar Recurso"
+                  ></i>
+                </a>
+                &nbsp;
+                <a
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#modalEliminar"
+                  (click)="abrirEliminar(re.id_recurso)"
+                >
+                  <i
+                    id="icono"
+                    class="far fa-trash-alt"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Eliminar"
+                  ></i>
+                </a>
+              </td>
+              <td style="text-align: center">{{ re.id_recurso }}</td>
+              <td style="text-align: center">{{ re.tipo }}</td>
+              <td style="text-align: center">{{ re.marca }}</td>
+              <td style="text-align: center">{{ re.equipo }}</td>
+              <td style="text-align: center">{{ re.modelo }}</td>
+              <td style="text-align: center">{{ re.serie }}</td>
+              <td style="text-align: center">{{ re.imei }}</td>
+              <td style="text-align: center">{{ re.estado_recurso }}</td>
+              <td style="text-align: center">{{ re.persona_asignada }}</td>
+              <td style="text-align: center">{{ re.codigo_corporativo }}</td>
+              <td style="text-align: center">{{ re.proyecto }}</td>
+              <td style="text-align: center">{{ re.observaciON }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer pb-0 pt-3">
+        <pagination-controls
+          (pageChange)="handlePageChange($event)"
+        ></pagination-controls>
+      </div>
     </div>
+    <!-- /.card -->
+  </div>
 </section>
 
-
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
-    <p style="color: white"> Loading... </p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
 </ngx-spinner>
 
-
-
 <!--Modal Agregar Recurso Hardware-->
-<div class="modal fade bd-example-modal-lg" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalAgregarRecurso" role="dialog" #modalAgregarRecurso>
-    <!--class="modal fade"-->
-    <div class="modal-dialog modal-lg">
-        <!--style="margin-left: 300px;"-->
-        <!-- Modal content-->
-        <div class="modal-content">
-            <!--style="width: 900px;height: 800px;"-->
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Agregar Nuevo Recurso Hardware</h5>
-                </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModal>&times;</button>
-                </div>
+<div
+  class="modal fade bd-example-modal-lg"
+  aria-labelledby="myLargeModalLabel"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalAgregarRecurso"
+  role="dialog"
+  #modalAgregarRecurso
+>
+  <!--class="modal fade"-->
+  <div class="modal-dialog modal-lg">
+    <!--style="margin-left: 300px;"-->
+    <!-- Modal content-->
+    <div class="modal-content">
+      <!--style="width: 900px;height: 800px;"-->
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Agregar Nuevo Recurso Hardware</h5>
+        </div>
+        <div>
+          <button type="button" class="close" data-dismiss="modal" #cerrarModal>
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Datos De Hardware</h3>
+              </div>
             </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title"> Datos De Hardware </h3>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Tipo <label #cboTipo style="color:red;visibility: hidden;">(campo obligatorio)</label></label>
-                                    <select #selectList1 class="custom-select" (change)="getInfoTipo(selectList1.value)">
-                                        <option [value]="0">--Seleccione--</option>
-                                        <option *ngFor="let tip of tipo" [value]="tip.id">
-                                            {{tip.nombre}}
-                                        </option>
-                                    </select>
-                                    <!--<input type="text" class="form-control" [(ngModel)]="datosPersonal.nombre" [ngModelOptions]="{standalone: true}">-->
-                                </div>
-                            </div>
-                            <!--<div class="col-md-1">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label
+                    >Tipo
+                    <label #cboTipo style="color: red; visibility: hidden"
+                      >(campo obligatorio)</label
+                    ></label
+                  >
+                  <select
+                    #selectList1
+                    class="custom-select"
+                    (change)="getInfoTipo(selectList1.value)"
+                  >
+                    <option [value]="0">--Seleccione--</option>
+                    <option *ngFor="let tip of tipo" [value]="tip.id">
+                      {{ tip.nombre }}
+                    </option>
+                  </select>
+                  <!--<input type="text" class="form-control" [(ngModel)]="datosPersonal.nombre" [ngModelOptions]="{standalone: true}">-->
+                </div>
+              </div>
+              <!--<div class="col-md-1">
                                 <div class="form-group" style="padding-top: 15px;">
                                     <br/>
                                     <a type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" data-toggle="modal" data-target="#modalAgregarTipo" title="Agregar Tipo" (click)="limpiar();btnAgregarTipo()">
@@ -217,18 +307,27 @@
                                     </a>
                                 </div>
                             </div>-->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Marca <label #cboMarca style="color:red;visibility: hidden;">(campo obligatorio)</label></label>
-                                    <select #selectList2 class="custom-select" (change)="getInfoMarca(selectList2.value)">
-                                        <option [value]="0">--Seleccione--</option>
-                                        <option *ngFor="let mar of marca" [value]="mar.id">
-                                            {{mar.nombre}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!--<div class="col-md-2">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label
+                    >Marca
+                    <label #cboMarca style="color: red; visibility: hidden"
+                      >(campo obligatorio)</label
+                    ></label
+                  >
+                  <select
+                    #selectList2
+                    class="custom-select"
+                    (change)="getInfoMarca(selectList2.value)"
+                  >
+                    <option [value]="0">--Seleccione--</option>
+                    <option *ngFor="let mar of marca" [value]="mar.id">
+                      {{ mar.nombre }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <!--<div class="col-md-2">
                                 <div class="form-group" style="padding-top: 15px;">
                                     <br/>
                                     <a type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" data-toggle="modal" data-target="#modalAgregarMarca" title="Agregar Tipo" (click)="limpiar();btnAgregarMarca()">
@@ -236,208 +335,348 @@
                                     </a>
                                 </div>
                             </div>-->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Modelo</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosHardware.modelo" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Serie</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosHardware.serie" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>IMEI (opcional)</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosHardware.imei" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label>Descripcion</label>
-                                    <textarea class="form-control" rows="3" style="resize: none;" [(ngModel)]="datosHardware.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label>Observacion</label>
-                                    <textarea class="form-control" rows="3" style="resize: none;" [(ngModel)]="datosHardware.observacion" [ngModelOptions]="{standalone: true}"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Modelo</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosHardware.modelo"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" #btnGuardarHardware (click)="addRecursoHardware()">Guardar</button>
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Serie</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosHardware.serie"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>IMEI (opcional)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosHardware.imei"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
             </div>
-        </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>Descripcion</label>
+                  <textarea
+                    class="form-control"
+                    rows="3"
+                    style="resize: none"
+                    [(ngModel)]="datosHardware.descripcion"
+                    [ngModelOptions]="{ standalone: true }"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>Observacion</label>
+                  <textarea
+                    class="form-control"
+                    rows="3"
+                    style="resize: none"
+                    [(ngModel)]="datosHardware.observacion"
+                    [ngModelOptions]="{ standalone: true }"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnGuardarHardware
+          (click)="addRecursoHardware()"
+        >
+          Guardar
+        </button>
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+      </div>
     </div>
+  </div>
 </div>
-
-
 
 <!--modal Confirmacion Eliminar-->
 <div class="modal fade" id="modalEliminar" role="dialog" #modalEliminar>
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Eliminar Recurso Hardware</h5>
-                </div>
-                <div>
-                    <button type="button" class="close" (click)="cancelarEliminar()">&times;</button>
-                </div>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div>
-                                    <label style="font-weight: normal;">¿Desea Eliminar?</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div>
-                                    <label style="font-weight: normal;">Recurso de id {{idRecurso}}</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" (click)="cancelarEliminar()">Cancelar</button>
-                <button type="button" class="btn btn-outline-success" (click)="confirmarEliminar()" #btnEliminarPersonal>Aceptar</button>
-            </div>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Eliminar Recurso Hardware</h5>
         </div>
+        <div>
+          <button type="button" class="close" (click)="cancelarEliminar()">
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div>
+                  <label style="font-weight: normal">¿Desea Eliminar?</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div>
+                  <label style="font-weight: normal"
+                    >Recurso de id {{ idRecurso }}</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="cancelarEliminar()"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="confirmarEliminar()"
+          #btnEliminarPersonal
+        >
+          Aceptar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
-
 
 <!--Modal Agregar Tipo-->
-<div class="modal fade" aria-labelledby="exampleModalCenterTitle" tabindex="-1" aria-hidden="true" id="modalAgregarTipo" role="dialog">
-    <!--class="modal fade"-->
-    <div class="modal-dialog modal-dialog-centered">
-        <!--style="margin-left: 300px;"-->
-        <!-- Modal content-->
-        <div class="modal-content">
-            <!--style="width: 900px;height: 800px;"-->
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Agregar Tipo</h5>
-                </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModalTipo>&times;</button>
-                </div>
-            </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosTipo.nombre" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Descripcion</label>
-                                    <textarea class="form-control" rows="4" style="resize: none;" [(ngModel)]="datosTipo.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Id Padre Entidad (opcinal)</label>
-                                    <select #selectList11 class="custom-select" (change)="getEntidadesTabla(selectList11.value,'T')">
-                                        <option [value]="1000">--Seleccione--</option>
-                                        <option *ngFor="let entTabla of entidadTabla" [value]="entTabla.id">
-                                            {{entTabla.nombre}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" #btnGuardarTipo (click)="addInfoEntidad('T')">Guardar</button>
-            </div>
+<div
+  class="modal fade"
+  aria-labelledby="exampleModalCenterTitle"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalAgregarTipo"
+  role="dialog"
+>
+  <!--class="modal fade"-->
+  <div class="modal-dialog modal-dialog-centered">
+    <!--style="margin-left: 300px;"-->
+    <!-- Modal content-->
+    <div class="modal-content">
+      <!--style="width: 900px;height: 800px;"-->
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Agregar Tipo</h5>
         </div>
+        <div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #cerrarModalTipo
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosTipo.nombre"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Descripcion</label>
+                  <textarea
+                    class="form-control"
+                    rows="4"
+                    style="resize: none"
+                    [(ngModel)]="datosTipo.descripcion"
+                    [ngModelOptions]="{ standalone: true }"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Id Padre Entidad (opcinal)</label>
+                  <select
+                    #selectList11
+                    class="custom-select"
+                    (change)="getEntidadesTabla(selectList11.value, 'T')"
+                  >
+                    <option [value]="1000">--Seleccione--</option>
+                    <option
+                      *ngFor="let entTabla of entidadTabla"
+                      [value]="entTabla.id"
+                    >
+                      {{ entTabla.nombre }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnGuardarTipo
+          (click)="addInfoEntidad('T')"
+        >
+          Guardar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
-
 <!--Modal Agregar Marca-->
-<div class="modal fade" aria-labelledby="exampleModalCenterTitle" tabindex="-1" aria-hidden="true" id="modalAgregarMarca" role="dialog">
-    <!--class="modal fade"-->
-    <div class="modal-dialog modal-dialog-centered">
-        <!--style="margin-left: 300px;"-->
-        <!-- Modal content-->
-        <div class="modal-content">
-            <!--style="width: 900px;height: 800px;"-->
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Agregar Marca</h5>
-                </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModalMarca>&times;</button>
-                </div>
-            </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosMarca.nombre" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Descripcion</label>
-                                    <textarea class="form-control" rows="4" style="resize: none;" [(ngModel)]="datosMarca.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Id Padre Entidad (opcinal)</label>
-                                    <select #selectList13 class="custom-select" (change)="getEntidadesTabla(selectList13.value,'M')">
-                                        <option [value]="1000">--Seleccione--</option>
-                                        <option *ngFor="let entTabla of entidadTabla" [value]="entTabla.id">
-                                            {{entTabla.nombre}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" #btnGuardarMarca (click)="addInfoEntidad('M')">Guardar</button>
-            </div>
+<div
+  class="modal fade"
+  aria-labelledby="exampleModalCenterTitle"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalAgregarMarca"
+  role="dialog"
+>
+  <!--class="modal fade"-->
+  <div class="modal-dialog modal-dialog-centered">
+    <!--style="margin-left: 300px;"-->
+    <!-- Modal content-->
+    <div class="modal-content">
+      <!--style="width: 900px;height: 800px;"-->
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Agregar Marca</h5>
         </div>
+        <div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #cerrarModalMarca
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosMarca.nombre"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Descripcion</label>
+                  <textarea
+                    class="form-control"
+                    rows="4"
+                    style="resize: none"
+                    [(ngModel)]="datosMarca.descripcion"
+                    [ngModelOptions]="{ standalone: true }"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Id Padre Entidad (opcinal)</label>
+                  <select
+                    #selectList13
+                    class="custom-select"
+                    (change)="getEntidadesTabla(selectList13.value, 'M')"
+                  >
+                    <option [value]="1000">--Seleccione--</option>
+                    <option
+                      *ngFor="let entTabla of entidadTabla"
+                      [value]="entTabla.id"
+                    >
+                      {{ entTabla.nombre }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnGuardarMarca
+          (click)="addInfoEntidad('M')"
+        >
+          Guardar
+        </button>
+      </div>
     </div>
+  </div>
 </div>

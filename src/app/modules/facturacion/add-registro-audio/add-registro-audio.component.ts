@@ -1,15 +1,12 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { RequerimientoService } from '../../../services/requerimiento.service';
-import { DatePipe } from '@angular/common';
-import Swal from 'sweetalert2/dist/sweetalert2.js';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import { RequerimientoService } from "../../../services/requerimiento.service";
+import { DatePipe } from "@angular/common";
+import { Router, ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
-import { Usuario } from 'src/app/models/usuario';
-import { ToastrService } from 'ngx-toastr';
-import {formatDate } from '@angular/common';
-import * as moment from 'moment';
+import { Usuario } from "src/app/models/usuario";
+import { ToastrService } from "ngx-toastr";
+import * as moment from "moment";
 import { HttpClient } from "@angular/common/http";
-
 
 @Component({
   selector: "app-add-registro-audio",
@@ -353,6 +350,3 @@ export class AddRegistroComponent implements OnInit {
       .subscribe((response) => {});
   }
 }
-
-
-

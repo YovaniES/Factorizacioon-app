@@ -36,42 +36,52 @@
             </div>
 
             <div class="col-md-3">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
                     <label>Periodo - Año</label>
-                    <select class="custom-select" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.periodo" [ngModelOptions]="{standalone: true}"  >
-                          <option value="2025">2025</option>
-                          <option value="2024">2024</option>
-                          <option value="2023">2023</option>
-                          <option value="2022">2022</option>
-                          <option value="2021">2021</option>
-                          <option value="2020">2020</option>
-                          <option value="2019">2019</option>
-                          <option value="2018">2018</option>
+                    <select
+                      class="custom-select"
+                      [disabled]="!inicioRegistro"
+                      [(ngModel)]="registroAudio.periodo"
+                      [ngModelOptions]="{ standalone: true }"
+                    >
+                      <option value="2025">2025</option>
+                      <option value="2024">2024</option>
+                      <option value="2023">2023</option>
+                      <option value="2022">2022</option>
+                      <option value="2021">2021</option>
+                      <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
                     </select>
-                    </div>
                   </div>
+                </div>
 
-                  <div class="col-sm-6">
-                    <div class="form-group">
+                <div class="col-sm-6">
+                  <div class="form-group">
                     <label>Periodo - Mes</label>
-                      <select class="custom-select" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.mes" [ngModelOptions]="{standalone: true}"  >
-                        <option value="01">01-Enero</option>
-                        <option value="02">02-Febrero</option>
-                        <option value="03">03-Marzo</option>
-                        <option value="04">04-Abril</option>
-                        <option value="05">05-Mayo</option>
-                        <option value="06">06-Junio</option>
-                        <option value="07">07-Julio</option>
-                        <option value="08">08-Agosto</option>
-                        <option value="09">09-Setiembre</option>
-                        <option value="10">10-Octubre</option>
-                        <option value="11">11-Noviembre</option>
-                        <option value="12">12-Diciembre</option>
-                      </select>
+                    <select
+                      class="custom-select"
+                      [disabled]="!inicioRegistro"
+                      [(ngModel)]="registroAudio.mes"
+                      [ngModelOptions]="{ standalone: true }"
+                    >
+                      <option value="01">01-Enero</option>
+                      <option value="02">02-Febrero</option>
+                      <option value="03">03-Marzo</option>
+                      <option value="04">04-Abril</option>
+                      <option value="05">05-Mayo</option>
+                      <option value="06">06-Junio</option>
+                      <option value="07">07-Julio</option>
+                      <option value="08">08-Agosto</option>
+                      <option value="09">09-Setiembre</option>
+                      <option value="10">10-Octubre</option>
+                      <option value="11">11-Noviembre</option>
+                      <option value="12">12-Diciembre</option>
+                    </select>
                   </div>
-                  </div>
+                </div>
               </div>
             </div>
 
@@ -82,10 +92,17 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>Tipo de Liquidación</label>
-               <select class="custom-select"  [(ngModel)]="registroAudio.idLiquidaciones" [ngModelOptions]="{standalone: true}"  >
-                      <option *ngFor="let leven of listaLiquidaciones" [value]="leven.idCorrelativo">
-                        {{leven.valorTexto1}}
-                      </option>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="registroAudio.idLiquidaciones"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option
+                    *ngFor="let leven of listaLiquidaciones"
+                    [value]="leven.idCorrelativo"
+                  >
+                    {{ leven.valorTexto1 }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -93,11 +110,18 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>Proyecto</label>
-               <!--  <select class="custom-select"  [(ngModel)]="registroAudio.idProyecto" [ngModelOptions]="{standalone: true}" (change)="onSelect($event.target.value)"  > -->
-                <select class="custom-select"  [(ngModel)]="registroAudio.idProyecto" [ngModelOptions]="{standalone: true}"   >
-                      <option *ngFor="let leven of listaProyectos" [value]="leven.idCorrelativo">
-                        {{leven.valorTexto1}}
-                      </option>
+                <!--  <select class="custom-select"  [(ngModel)]="registroAudio.idProyecto" [ngModelOptions]="{standalone: true}" (change)="onSelect($event.target.value)"  > -->
+                <select
+                  class="custom-select"
+                  [(ngModel)]="registroAudio.idProyecto"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option
+                    *ngFor="let leven of listaProyectos"
+                    [value]="leven.idCorrelativo"
+                  >
+                    {{ leven.valorTexto1 }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -122,13 +146,19 @@
                         {{gest.valor_texto_1}}
                       </option>
                 </select> -->
-                 <select class="custom-select" [(ngModel)]="registroAudio.id_gestor"
-                   [ngModelOptions]="{standalone: true}">
-                   <option value="0">--Seleccione--</option>
-                   <option *ngFor="let leven of listaGestores" [value]="leven.idCorrelativo">
-                     {{leven.valorTexto1}}
-                   </option>
-                 </select>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="registroAudio.id_gestor"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option value="0">--Seleccione--</option>
+                  <option
+                    *ngFor="let leven of listaGestores"
+                    [value]="leven.idCorrelativo"
+                  >
+                    {{ leven.valorTexto1 }}
+                  </option>
+                </select>
               </div>
             </div>
 
@@ -219,112 +249,202 @@
       <div class="col-sm-4">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title"><i class="fas fa-plus fa-fw" data-toggle="modal" data-target="#modalVentaDeclarada" (click)="limpiarventadeclarada()"></i>  &nbsp;Venta Declarada</h3>
+            <h3 class="card-title">
+              <i
+                class="fas fa-plus fa-fw"
+                data-toggle="modal"
+                data-target="#modalVentaDeclarada"
+                (click)="limpiarventadeclarada()"
+              ></i>
+              &nbsp;Venta Declarada
+            </h3>
           </div>
           <form role="form">
-          <div class="card-body">
-                <div class="form-group">
-                  <div class="row">
-                     <div class="col-12">
-                        <div class="table-responsive">
-                     <table  class="table table-striped table-bordered table-sm" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th>Acciones</th>
-                       <!--  <th>#</th> -->
-                        <th>Periodo</th>
-                        <th>Importe</th>
-                        <th>Comentario</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr  *ngFor="let dvd of data_venta_declarada">
-                         <td >
-                                 <a type="button" (click)="modalEditarVentaDeclarada(dvd.idFactVenta)">
-                                    <i id="icono" class="fas fa-edit text-primary"  data-toggle="modal" data-target="#modalEditarVentaDeclarada" title="Editar"></i>
-                                </a>
-                                &nbsp;
-                                <a type="button"  (click)="eliminarVentaDeclarada(dvd.idFactVenta,dvd.idFactura)" data-toggle="modal" data-target="#modalEliminacionVentaDeclarada">
-                                    <i id="icono" class="far fa-trash-alt text-danger"  data-toggle="tooltip" data-placement="top" title="Eliminar"></i>
-                                </a>
-                          </td>
-                       <!--  <td>{{dvd.idFactVenta}}</td> -->
-                        <td>{{dvd.periodo}}</td>
-                        <td>{{dvd.venta_declarada}}</td>
-                        <td>{{dvd.comentario}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                   </div>
+            <div class="card-body">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table-responsive">
+                      <table
+                        class="table table-striped table-bordered table-sm"
+                        cellspacing="0"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Acciones</th>
+                            <!--  <th>#</th> -->
+                            <th>Periodo</th>
+                            <th>Importe</th>
+                            <th>Comentario</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let dvd of data_venta_declarada">
+                            <td>
+                              <a
+                                type="button"
+                                (click)="
+                                  modalEditarVentaDeclarada(dvd.idFactVenta)
+                                "
+                              >
+                                <i
+                                  id="icono"
+                                  class="fas fa-edit text-primary"
+                                  data-toggle="modal"
+                                  data-target="#modalEditarVentaDeclarada"
+                                  title="Editar"
+                                ></i>
+                              </a>
+                              &nbsp;
+                              <a
+                                type="button"
+                                (click)="
+                                  eliminarVentaDeclarada(
+                                    dvd.idFactVenta,
+                                    dvd.idFactura
+                                  )
+                                "
+                                data-toggle="modal"
+                                data-target="#modalEliminacionVentaDeclarada"
+                              >
+                                <i
+                                  id="icono"
+                                  class="far fa-trash-alt text-danger"
+                                  data-toggle="tooltip"
+                                  data-placement="top"
+                                  title="Eliminar"
+                                ></i>
+                              </a>
+                            </td>
+                            <!--  <td>{{dvd.idFactVenta}}</td> -->
+                            <td>{{ dvd.periodo }}</td>
+                            <td>{{ dvd.venta_declarada }}</td>
+                            <td>{{ dvd.comentario }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
-                     </div>
+                  </div>
                 </div>
-          </div>
-        </form>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
 
       <div class="col-sm-8">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title"> <i class="fas fa-plus fa-fw" data-toggle="modal" data-target="#modalFacturacion" (click)="limpiarfacturacion()"></i>  &nbsp;Factura</h3>
+            <h3 class="card-title">
+              <i
+                class="fas fa-plus fa-fw"
+                data-toggle="modal"
+                data-target="#modalFacturacion"
+                (click)="limpiarfacturacion()"
+              ></i>
+              &nbsp;Factura
+            </h3>
           </div>
           <form role="form">
-          <div class="card-body">
-                <div class="form-group">
-                  <div class="row">
-                     <div class="col-12">
-                        <div class="table-responsive">
-                     <table  class="table table-striped table-bordered table-sm" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th>Acciones</th>
-                        <!-- <th>#</th> -->
-                        <th>OC</th>
-                        <th>Importe</th>
-                        <th>Certificación</th>
-                        <th>Estado</th>
-                        <th>Factura</th>
-                        <th>Comentario</th>
-                        <th>F. de Facturacion</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr  *ngFor="let df of data_facturacion">
-                         <td >
-                                <a type="button" (click)="modalEditarFacturacion(df.idFactCertificacion)">
-                                    <i id="icono" class="fas fa-edit text-primary"  data-toggle="modal" data-target="#modalEditarFacturacion" title="Editar"></i>
-                                </a>
-                                &nbsp;
-                                <a type="button"  (click)="eliminarFacturacion(df.idFactCertificacion,df.idFactura)" data-toggle="modal" data-target="#modalEliminacionLogica">
-                                    <i id="icono" class="far fa-trash-alt text-danger"  data-toggle="tooltip" data-placement="top" title="Eliminar"></i>
-                                </a>
-                          </td>
-                        <!-- <td>{{df.idFactCertificacion}}</td> -->
-                        <td>{{df.oc}}</td>
-                        <td>{{df.importe}}</td>
-                        <td>{{df.certificacion}}</td>
-                        <td>
-                         <span *ngIf="df.estado=='Facturado'" class="badge bg-danger"> {{df.estado}}</span>
-                         <span *ngIf="df.estado=='Certificado'" class="badge bg-success"> {{df.estado}}</span>
-                         <span *ngIf="df.estado=='Propuesto'" class="badge bg-primary"> {{df.estado}}</span>
-
-                        </td><!--   -->
-                        <td>{{df.factura}}</td>
-                        <td>{{df.comentario}}</td>
-                        <td>{{df.fecha_facturacion}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  </div>
-                  </div>
+            <div class="card-body">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table-responsive">
+                      <table
+                        class="table table-striped table-bordered table-sm"
+                        cellspacing="0"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Acciones</th>
+                            <!-- <th>#</th> -->
+                            <th>OC</th>
+                            <th>Importe</th>
+                            <th>Certificación</th>
+                            <th>Estado</th>
+                            <th>Factura</th>
+                            <th>Comentario</th>
+                            <th>F. de Facturacion</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let df of data_facturacion">
+                            <td>
+                              <a
+                                type="button"
+                                (click)="
+                                  modalEditarFacturacion(df.idFactCertificacion)
+                                "
+                              >
+                                <i
+                                  id="icono"
+                                  class="fas fa-edit text-primary"
+                                  data-toggle="modal"
+                                  data-target="#modalEditarFacturacion"
+                                  title="Editar"
+                                ></i>
+                              </a>
+                              &nbsp;
+                              <a
+                                type="button"
+                                (click)="
+                                  eliminarFacturacion(
+                                    df.idFactCertificacion,
+                                    df.idFactura
+                                  )
+                                "
+                                data-toggle="modal"
+                                data-target="#modalEliminacionLogica"
+                              >
+                                <i
+                                  id="icono"
+                                  class="far fa-trash-alt text-danger"
+                                  data-toggle="tooltip"
+                                  data-placement="top"
+                                  title="Eliminar"
+                                ></i>
+                              </a>
+                            </td>
+                            <!-- <td>{{df.idFactCertificacion}}</td> -->
+                            <td>{{ df.oc }}</td>
+                            <td>{{ df.importe }}</td>
+                            <td>{{ df.certificacion }}</td>
+                            <td>
+                              <span
+                                *ngIf="df.estado == 'Facturado'"
+                                class="badge bg-danger"
+                              >
+                                {{ df.estado }}</span
+                              >
+                              <span
+                                *ngIf="df.estado == 'Certificado'"
+                                class="badge bg-success"
+                              >
+                                {{ df.estado }}</span
+                              >
+                              <span
+                                *ngIf="df.estado == 'Propuesto'"
+                                class="badge bg-primary"
+                              >
+                                {{ df.estado }}</span
+                              >
+                            </td>
+                            <!--   -->
+                            <td>{{ df.factura }}</td>
+                            <td>{{ df.comentario }}</td>
+                            <td>{{ df.fecha_facturacion }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-          </div>
-        </form>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-
     </div>
     <!-- /.card -->
     <div class="card card-primary">
@@ -490,327 +610,529 @@
   </div>
 </div>
 
-
 <!--modal Nuevo registro de facturacion-->
 
-    <div class="modal fade" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalFacturacion" role="dialog" #modalMarca>
-    <div class="modal-dialog" >
-        <div class="modal-content" style="border-top: 3px solid #28A745;" >
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Agregar Nueva Factura</h5>
-                </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModalFacturacion>&times;</button>
-                </div>
-            </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Orden de Compra</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.orde_compra" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Importe</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.importe" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Certificación</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.certificacion" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Estado</label>
-                                   <select class="custom-select"  [(ngModel)]="datosFacturacion.idEstado" [ngModelOptions]="{standalone: true}"  >
-                                    <option value="0">--Seleccione--</option>
-                                    <option *ngFor="let leven of listaEstadoFacturacion" [value]="leven.idCorrelativo">
-                                    {{leven.valorTexto1}}
-                                    </option>
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Factura</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.factura" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Comentario</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.comentario" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Fecha de Facturación</label>
-                                    <input type="date" class="form-control" [(ngModel)]="datosFacturacion.fecha_facturacion" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-               <!--  <button type="button" class="btn btn-outline-success" #btnGuardarEntidad (click)="addEntidad()">Guardar</button> -->
-                <button type="button" class="btn btn-outline-success" #btnGuardarFacturacion (click)="addFacturacion(registroAudio.codigo_factura)" ><i class="fa fa-save"></i> &nbsp;Guardar</button>
-            </div>
+<div
+  class="modal fade"
+  aria-labelledby="myLargeModalLabel"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalFacturacion"
+  role="dialog"
+  #modalMarca
+>
+  <div class="modal-dialog">
+    <div class="modal-content" style="border-top: 3px solid #28a745">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Agregar Nueva Factura</h5>
         </div>
+        <div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #cerrarModalFacturacion
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Orden de Compra</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.orde_compra"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Importe</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.importe"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Certificación</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.certificacion"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Estado</label>
+                  <select
+                    class="custom-select"
+                    [(ngModel)]="datosFacturacion.idEstado"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <option value="0">--Seleccione--</option>
+                    <option
+                      *ngFor="let leven of listaEstadoFacturacion"
+                      [value]="leven.idCorrelativo"
+                    >
+                      {{ leven.valorTexto1 }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Factura</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.factura"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Comentario</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.comentario"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Fecha de Facturación</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.fecha_facturacion"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!--  <button type="button" class="btn btn-outline-success" #btnGuardarEntidad (click)="addEntidad()">Guardar</button> -->
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnGuardarFacturacion
+          (click)="addFacturacion(registroAudio.codigo_factura)"
+        >
+          <i class="fa fa-save"></i> &nbsp;Guardar
+        </button>
+      </div>
     </div>
   </div>
-
+</div>
 
 <!--Modal Editar Facturacion-->
-<div class="modal fade" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalEditarFacturacion" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content" style="border-top: 3px solid #28A745;">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Editar Facturacion</h5>
-                </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModalEditarFacturacion>&times;</button>
-                </div>
-            </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Orden de Compra</label>
-                                     <input type="hidden" value="{{idFactCertificacion}}" id="idFactCertificacion">
-                                     <input type="hidden"  [(ngModel)]="datosFacturacion.idfactura" [ngModelOptions]="{standalone: true}">
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.orde_compra" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Importe</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.importe" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Certificación</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.certificacion" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Estado</label>
-                                   <select class="custom-select"  [(ngModel)]="datosFacturacion.idEstado" [ngModelOptions]="{standalone: true}"  >
-                                    <option value="0">--Seleccione--</option>
-                                    <option *ngFor="let leven of listaEstadoFacturacion" [value]="leven.idCorrelativo">
-                                    {{leven.valorTexto1}}
-                                    </option>
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Factura</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.factura" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Comentario</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosFacturacion.comentario" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Fecha de Facturación</label>
-                                    <input type="date" class="form-control" [(ngModel)]="datosFacturacion.fecha_facturacion" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-outline-success" #btnEditarInfoEntidad (click)="editarInfoEntidad()">Guardar</button> -->
-                <button type="button" class="btn btn-outline-success" #btnEditarFacturacion (click)="editarFacturacion()"><i class="fa fa-edit"></i> &nbsp;Editar </button>
-            </div>
+<div
+  class="modal fade"
+  aria-labelledby="myLargeModalLabel"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalEditarFacturacion"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content" style="border-top: 3px solid #28a745">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Editar Facturacion</h5>
         </div>
+        <div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #cerrarModalEditarFacturacion
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Orden de Compra</label>
+                  <input
+                    type="hidden"
+                    value="{{ idFactCertificacion }}"
+                    id="idFactCertificacion"
+                  />
+                  <input
+                    type="hidden"
+                    [(ngModel)]="datosFacturacion.idfactura"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.orde_compra"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Importe</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.importe"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Certificación</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.certificacion"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Estado</label>
+                  <select
+                    class="custom-select"
+                    [(ngModel)]="datosFacturacion.idEstado"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <option value="0">--Seleccione--</option>
+                    <option
+                      *ngFor="let leven of listaEstadoFacturacion"
+                      [value]="leven.idCorrelativo"
+                    >
+                      {{ leven.valorTexto1 }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Factura</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.factura"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Comentario</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.comentario"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Fecha de Facturación</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="datosFacturacion.fecha_facturacion"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-success" #btnEditarInfoEntidad (click)="editarInfoEntidad()">Guardar</button> -->
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnEditarFacturacion
+          (click)="editarFacturacion()"
+        >
+          <i class="fa fa-edit"></i> &nbsp;Editar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!--Modal Editar Venta Declarada-->
-<div class="modal fade" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalEditarVentaDeclarada" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content" style="border-top: 3px solid #28A745;">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Editar Venta Declarada</h5>
+<div
+  class="modal fade"
+  aria-labelledby="myLargeModalLabel"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalEditarVentaDeclarada"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content" style="border-top: 3px solid #28a745">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Editar Venta Declarada</h5>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #cerrarModalEditarVentaDeclarada
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Venta Declarada</label>
+                  <input
+                    type="hidden"
+                    [(ngModel)]="datosVentaDeclarada.idFactVenta"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    type="hidden"
+                    [(ngModel)]="datosVentaDeclarada.idfactura"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosVentaDeclarada.venta_declarada"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
                 </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModalEditarVentaDeclarada>&times;</button>
-                </div>
+              </div>
             </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Venta Declarada</label>
-                                     <input type="hidden"  [(ngModel)]="datosVentaDeclarada.idFactVenta" [ngModelOptions]="{standalone: true}">
-                                     <input type="hidden"  [(ngModel)]="datosVentaDeclarada.idfactura" [ngModelOptions]="{standalone: true}">
-                                    <input type="text" class="form-control" [(ngModel)]="datosVentaDeclarada.venta_declarada" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Comentario</label>
-                                   <!--  <input type="text" class="form-control" [(ngModel)]="datosFacturacion.importe" [ngModelOptions]="{standalone: true}"> -->
-                                    <textarea
-                                    rows="2"
-                                    class="form-control"
-                                    [(ngModel)]="datosVentaDeclarada.comentario"
-                                    [ngModelOptions]="{ standalone: true }"
-                                    ></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Periodo - Año</label>
-                              <select
-                                class="custom-select"
-                                [(ngModel)]="datosVentaDeclarada.periodoanio"
-                                [ngModelOptions]="{ standalone: true }"
-                              >
-                                <!-- <option *ngFor="let leven of listaTipoEvento" [value]="leven.idCorrelativo">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Comentario</label>
+                  <!--  <input type="text" class="form-control" [(ngModel)]="datosFacturacion.importe" [ngModelOptions]="{standalone: true}"> -->
+                  <textarea
+                    rows="2"
+                    class="form-control"
+                    [(ngModel)]="datosVentaDeclarada.comentario"
+                    [ngModelOptions]="{ standalone: true }"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Periodo - Año</label>
+                  <select
+                    class="custom-select"
+                    [(ngModel)]="datosVentaDeclarada.periodoanio"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <!-- <option *ngFor="let leven of listaTipoEvento" [value]="leven.idCorrelativo">
                                       {{leven.valorTexto1}}
                                     </option> -->
-                                <option value="2025">2025</option>
-                                <option value="2024">2024</option>
-                                <option value="2023">2023</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                                <option value="2018">2018</option>
-                              </select>
-                            </div>
-                          </div>
-                           <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Periodo - Mes</label>
-                              <select
-                                class="custom-select"
-                                [(ngModel)]="datosVentaDeclarada.periodomes"
-                                [ngModelOptions]="{ standalone: true }"
-                              >
-                                  <option value="01">01-Enero</option>
-                                  <option value="02">02-Febrero</option>
-                                  <option value="03">03-Marzo</option>
-                                  <option value="04">04-Abril</option>
-                                  <option value="05">05-Mayo</option>
-                                  <option value="06">06-Junio</option>
-                                  <option value="07">07-Julio</option>
-                                  <option value="08">08-Agosto</option>
-                                  <option value="09">09-Setiembre</option>
-                                  <option value="10">10-Octubre</option>
-                                  <option value="11">11-Noviembre</option>
-                                  <option value="12">12-Diciembre</option>
-                              </select>
-                            </div>
-                          </div>
-                          </div>
-                    </div>
-                </form>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Periodo - Mes</label>
+                  <select
+                    class="custom-select"
+                    [(ngModel)]="datosVentaDeclarada.periodomes"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <option value="01">01-Enero</option>
+                    <option value="02">02-Febrero</option>
+                    <option value="03">03-Marzo</option>
+                    <option value="04">04-Abril</option>
+                    <option value="05">05-Mayo</option>
+                    <option value="06">06-Junio</option>
+                    <option value="07">07-Julio</option>
+                    <option value="08">08-Agosto</option>
+                    <option value="09">09-Setiembre</option>
+                    <option value="10">10-Octubre</option>
+                    <option value="11">11-Noviembre</option>
+                    <option value="12">12-Diciembre</option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-outline-success" #btnEditarInfoEntidad (click)="editarInfoEntidad()">Guardar</button> -->
-                <button type="button" class="btn btn-outline-success" #btnEditarVentaDeclarada (click)="editarVentaDeclarada()"><i class="fa fa-edit"></i> &nbsp;Editar </button>
-            </div>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-success" #btnEditarInfoEntidad (click)="editarInfoEntidad()">Guardar</button> -->
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnEditarVentaDeclarada
+          (click)="editarVentaDeclarada()"
+        >
+          <i class="fa fa-edit"></i> &nbsp;Editar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!--modal Nuevo registro de venta declarada-->
 
-    <div class="modal fade" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalVentaDeclarada" role="dialog" >
-    <div class="modal-dialog" >
-        <div class="modal-content" style="border-top: 3px solid #28A745;" >
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Agregar Nueva Venta Declarada</h5>
+<div
+  class="modal fade"
+  aria-labelledby="myLargeModalLabel"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalVentaDeclarada"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content" style="border-top: 3px solid #28a745">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Agregar Nueva Venta Declarada</h5>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #cerrarModalVentaDeclarada
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Venta Declarada</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosVentaDeclarada.venta_declarada"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
                 </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModalVentaDeclarada>&times;</button>
-                </div>
+              </div>
             </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Venta Declarada</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosVentaDeclarada.venta_declarada" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Comentario</label>
-                                   <!--  <input type="text" class="form-control" [(ngModel)]="datosFacturacion.importe" [ngModelOptions]="{standalone: true}"> -->
-                                    <textarea
-                                    rows="2"
-                                    class="form-control"
-                                    [(ngModel)]="datosVentaDeclarada.comentario"
-                                    [ngModelOptions]="{ standalone: true }"
-                                    ></textarea>
-                                </div>
-                            </div>
-                        </div>
-                       <!--
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Comentario</label>
+                  <!--  <input type="text" class="form-control" [(ngModel)]="datosFacturacion.importe" [ngModelOptions]="{standalone: true}"> -->
+                  <textarea
+                    rows="2"
+                    class="form-control"
+                    [(ngModel)]="datosVentaDeclarada.comentario"
+                    [ngModelOptions]="{ standalone: true }"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <!--
                          <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -819,63 +1141,70 @@
                                 </div>
                             </div>
                         </div> -->
-                          <div class="row">
-                            <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Periodo - Año</label>
-                              <select
-                                class="custom-select"
-                                [(ngModel)]="datosVentaDeclarada.periodoanio"
-                                [ngModelOptions]="{ standalone: true }"
-                              >
-                                <!-- <option *ngFor="let leven of listaTipoEvento" [value]="leven.idCorrelativo">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Periodo - Año</label>
+                  <select
+                    class="custom-select"
+                    [(ngModel)]="datosVentaDeclarada.periodoanio"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <!-- <option *ngFor="let leven of listaTipoEvento" [value]="leven.idCorrelativo">
                                       {{leven.valorTexto1}}
                                     </option> -->
-                                <option value="2025">2025</option>
-                                <option value="2024">2024</option>
-                                <option value="2023">2023</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                                <option value="2018">2018</option>
-                              </select>
-                            </div>
-                          </div>
-                           <div class="col-md-6">
-                            <div class="form-group">
-                              <label>Periodo - Mes</label>
-                              <select
-                                class="custom-select"
-                                [(ngModel)]="datosVentaDeclarada.periodomes"
-                                [ngModelOptions]="{ standalone: true }"
-                              >
-                                  <option value="01">01-Enero</option>
-                                  <option value="02">02-Febrero</option>
-                                  <option value="03">03-Marzo</option>
-                                  <option value="04">04-Abril</option>
-                                  <option value="05">05-Mayo</option>
-                                  <option value="06">06-Junio</option>
-                                  <option value="07">07-Julio</option>
-                                  <option value="08">08-Agosto</option>
-                                  <option value="09">09-Setiembre</option>
-                                  <option value="10">10-Octubre</option>
-                                  <option value="11">11-Noviembre</option>
-                                  <option value="12">12-Diciembre</option>
-                              </select>
-                            </div>
-                          </div>
-                          </div>
-                    </div>
-                </form>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Periodo - Mes</label>
+                  <select
+                    class="custom-select"
+                    [(ngModel)]="datosVentaDeclarada.periodomes"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <option value="01">01-Enero</option>
+                    <option value="02">02-Febrero</option>
+                    <option value="03">03-Marzo</option>
+                    <option value="04">04-Abril</option>
+                    <option value="05">05-Mayo</option>
+                    <option value="06">06-Junio</option>
+                    <option value="07">07-Julio</option>
+                    <option value="08">08-Agosto</option>
+                    <option value="09">09-Setiembre</option>
+                    <option value="10">10-Octubre</option>
+                    <option value="11">11-Noviembre</option>
+                    <option value="12">12-Diciembre</option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <div class="modal-footer">
-               <!--  <button type="button" class="btn btn-outline-success" #btnGuardarEntidad (click)="addEntidad()">Guardar</button> -->
-                <button type="button" class="btn btn-outline-success" #btnGuardarVentaDeclarada (click)="addVentaDeclarada(registroAudio.codigo_factura)" ><i class="fa fa-save"></i> &nbsp;Guardar</button>
-            </div>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!--  <button type="button" class="btn btn-outline-success" #btnGuardarEntidad (click)="addEntidad()">Guardar</button> -->
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnGuardarVentaDeclarada
+          (click)="addVentaDeclarada(registroAudio.codigo_factura)"
+        >
+          <i class="fa fa-save"></i> &nbsp;Guardar
+        </button>
+      </div>
     </div>
   </div>
+</div>
 
 <ngx-spinner
   bdColor="rgba(0, 0, 0, 0.8)"

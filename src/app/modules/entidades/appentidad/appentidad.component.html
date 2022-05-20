@@ -1,120 +1,206 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Mantenedor De Entidades</h1>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Mantenedor De Entidades</h1>
+      </div>
     </div>
+  </div>
 </section>
-
 
 <!-- Main content -->
 <section class="content">
-    <div class="container-fluid">
-        <div class="card card-primary">
-            <form role="form">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Entidad</label>
-                                <select #selectList1 class="custom-select" (change)="getInfoTotalTablaEntidad(selectList1.value,$event)">
-                                    <option [value]="1000">--Seleccione--</option>
-                                    <option *ngFor="let tabla of tablas" [value]="tabla.id" [id]="tabla.idPadre">
-                                        {{tabla.nombre}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalEntidad" (click)="limpiarEntidad();habilitarGuardar()" style="margin-top: 30px;">Agregar Entidad</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="card-header" #tablaEntidad1>
-                <h3 class="card-title">{{titulo}}</h3>
+  <div class="container-fluid">
+    <div class="card card-primary">
+      <form role="form">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Entidad</label>
+                <select
+                  #selectList1
+                  class="custom-select"
+                  (change)="getInfoTotalTablaEntidad(selectList1.value, $event)"
+                >
+                  <option [value]="1000">--Seleccione--</option>
+                  <option
+                    *ngFor="let tabla of tablas"
+                    [value]="tabla.id"
+                    [id]="tabla.idPadre"
+                  >
+                    {{ tabla.nombre }}
+                  </option>
+                </select>
+              </div>
             </div>
-            <div class="card-body table-responsive table-sm" #tablaEntidad2>
-                <table class="table table-hover" style="width: 1000px;">
-                    <thead>
-                        <tr>
-                            <th style="width: 20px;text-align: center;">Accion</th>
-                            <th style="width: 10px;text-align: center;">Id</th>
-                            <th style="width: 100px;text-align: center;">Nombre</th>
-                            <th style="width: 100px;text-align: center;">Descripcion</th>
-                            <th style="width: 100px;text-align: center;">Nombre Padre</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let tEntidad of tablaEntidad | paginate: {id: 'TablaE', itemsPerPage: 4, currentPage: paginaInicioT}">
-                            <td style="text-align: center;">
-                                <a type="button" (click)="modalEditarInfoEntidad(tEntidad)">
-                                    <i id="icono" class="far fa-edit" data-toggle="modal" data-target="#modalEditarInfoEntidad" title="Quitar"></i>
-                                </a>
-                                &nbsp;
-                                <a type="button" (click)="eliminarInfoEntidad(tEntidad.id)">
-                                    <i id="icono" class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Editar"></i>
-                                </a>
-                            </td>
-                            <td style="text-align: center;">{{tEntidad.id}}</td>
-                            <td style="text-align: center;">{{tEntidad.nombre}}</td>
-                            <td style="text-align: center;">{{tEntidad.descripcion}}</td>
-                            <td style="text-align: center;">{{tEntidad.nombrePadre}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="card-footer pb-0 pt-3">
-                    <pagination-controls (pageChange)="paginaInicioT = $event" id="TablaE"></pagination-controls>
-                </div>
+            <div class="col-md-3 text-center">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#modalEntidad"
+                (click)="limpiarEntidad(); habilitarGuardar()"
+                style="margin-top: 30px"
+              >
+                Agregar Entidad
+              </button>
             </div>
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-12">
-                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalInfoEntidad" #btnInfoEntidad (click)="nroPaginaT();limpiarInfoEntidad();habilitarGuardarInfoEntidad();">Agregar</button>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </form>
+      <div class="card-header" #tablaEntidad1>
+        <h3 class="card-title">{{ titulo }}</h3>
+      </div>
+      <div class="card-body table-responsive table-sm" #tablaEntidad2>
+        <table class="table table-hover" style="width: 1000px">
+          <thead>
+            <tr>
+              <th style="width: 20px; text-align: center">Accion</th>
+              <th style="width: 10px; text-align: center">Id</th>
+              <th style="width: 100px; text-align: center">Nombre</th>
+              <th style="width: 100px; text-align: center">Descripcion</th>
+              <th style="width: 100px; text-align: center">Nombre Padre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let tEntidad of tablaEntidad
+                  | paginate
+                    : {
+                        id: 'TablaE',
+                        itemsPerPage: 4,
+                        currentPage: paginaInicioT
+                      }
+              "
+            >
+              <td style="text-align: center">
+                <a type="button" (click)="modalEditarInfoEntidad(tEntidad)">
+                  <i
+                    id="icono"
+                    class="far fa-edit"
+                    data-toggle="modal"
+                    data-target="#modalEditarInfoEntidad"
+                    title="Quitar"
+                  ></i>
+                </a>
+                &nbsp;
+                <a type="button" (click)="eliminarInfoEntidad(tEntidad.id)">
+                  <i
+                    id="icono"
+                    class="far fa-trash-alt"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Editar"
+                  ></i>
+                </a>
+              </td>
+              <td style="text-align: center">{{ tEntidad.id }}</td>
+              <td style="text-align: center">{{ tEntidad.nombre }}</td>
+              <td style="text-align: center">{{ tEntidad.descripcion }}</td>
+              <td style="text-align: center">{{ tEntidad.nombrePadre }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="card-footer pb-0 pt-3">
+          <pagination-controls
+            (pageChange)="paginaInicioT = $event"
+            id="TablaE"
+          ></pagination-controls>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-12">
+            <button
+              type="button"
+              class="btn btn-primary float-right"
+              data-toggle="modal"
+              data-target="#modalInfoEntidad"
+              #btnInfoEntidad
+              (click)="
+                nroPaginaT();
+                limpiarInfoEntidad();
+                habilitarGuardarInfoEntidad()
+              "
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-
-
 <!--Modal Agregar Entidad-->
-<div class="modal fade" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalInfoEntidad" role="dialog" #modalTipo>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">{{titulo}}</h5>
+<div
+  class="modal fade"
+  aria-labelledby="myLargeModalLabel"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalInfoEntidad"
+  role="dialog"
+  #modalTipo
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">{{ titulo }}</h5>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #cerrarModalInfoEntidad
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosInfoEntidad.nombre"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
                 </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModalInfoEntidad>&times;</button>
-                </div>
+              </div>
             </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosInfoEntidad.nombre" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Descripcion</label>
-                                    <textarea class="form-control" [(ngModel)]="datosInfoEntidad.descripcion" [ngModelOptions]="{standalone: true}" rows="4" style="resize: none;"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <!--<div class="row">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Descripcion</label>
+                  <textarea
+                    class="form-control"
+                    [(ngModel)]="datosInfoEntidad.descripcion"
+                    [ngModelOptions]="{ standalone: true }"
+                    rows="4"
+                    style="resize: none"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <!--<div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Entidad (opcional)</label>
@@ -127,75 +213,126 @@
                                 </div>
                             </div>
                         </div>-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Id Padre Entidad (opcinal)</label>
-                                    <select #selectList3 class="custom-select" (change)="getEntidadesTabla(selectList3.value)">
-                                        <option [value]="1000">--Seleccione--</option>
-                                        <option *ngFor="let entTabla of entidadTabla" [value]="entTabla.id">
-                                            {{entTabla.nombre}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Id Padre Entidad (opcinal)</label>
+                  <select
+                    #selectList3
+                    class="custom-select"
+                    (change)="getEntidadesTabla(selectList3.value)"
+                  >
+                    <option [value]="1000">--Seleccione--</option>
+                    <option
+                      *ngFor="let entTabla of entidadTabla"
+                      [value]="entTabla.id"
+                    >
+                      {{ entTabla.nombre }}
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" #btnGuardarInfoEntidad (click)="addInfoEntidad()">Guardar</button>
-            </div>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnGuardarInfoEntidad
+          (click)="addInfoEntidad()"
+        >
+          Guardar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
-
 <!--Modal Agregar Entidad-->
-<div class="modal fade" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalEntidad" role="dialog" #modalMarca>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Agregar Entidad</h5>
+<div
+  class="modal fade"
+  aria-labelledby="myLargeModalLabel"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalEntidad"
+  role="dialog"
+  #modalMarca
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Agregar Entidad</h5>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #cerrarModalEntidad
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosEntidad.nombre"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
                 </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModalEntidad>&times;</button>
-                </div>
+              </div>
             </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosEntidad.nombre" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Descripcion</label>
-                                    <textarea class="form-control" [(ngModel)]="datosEntidad.descripcion" [ngModelOptions]="{standalone: true}" rows="4" style="resize: none;"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Entidad (opcional)</label>
-                                    <select #selectList2 class="custom-select" (change)="getEntidades(selectList2.value)">
-                                        <option [value]="1000">--Seleccione--</option>
-                                        <option *ngFor="let ent of entidades" [value]="ent.id">
-                                            {{ent.nombre}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!--<div class="row">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Descripcion</label>
+                  <textarea
+                    class="form-control"
+                    [(ngModel)]="datosEntidad.descripcion"
+                    [ngModelOptions]="{ standalone: true }"
+                    rows="4"
+                    style="resize: none"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Entidad (opcional)</label>
+                  <select
+                    #selectList2
+                    class="custom-select"
+                    (change)="getEntidades(selectList2.value)"
+                  >
+                    <option [value]="1000">--Seleccione--</option>
+                    <option *ngFor="let ent of entidades" [value]="ent.id">
+                      {{ ent.nombre }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!--<div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Id Padre Entidad (opcinal)</label>
@@ -208,64 +345,115 @@
                                 </div>
                             </div>
                         </div>-->
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" #btnGuardarEntidad (click)="addEntidad()">Guardar</button>
-            </div>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnGuardarEntidad
+          (click)="addEntidad()"
+        >
+          Guardar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
-
 
 <!--Modal Editar-->
-<div class="modal fade" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalEditarInfoEntidad" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">{{titulo}}</h5>
+<div
+  class="modal fade"
+  aria-labelledby="myLargeModalLabel"
+  tabindex="-1"
+  aria-hidden="true"
+  id="modalEditarInfoEntidad"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">{{ titulo }}</h5>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            #cerrarModalEditarInfoEntidad
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px">
+        <form role="form">
+          <div
+            class="card-body"
+            style="
+              padding-top: 0px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-left: 0px;
+            "
+          >
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Id Entidad</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosEditarInfoEntidad.idTabla"
+                    [ngModelOptions]="{ standalone: true }"
+                    disabled
+                  />
                 </div>
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" #cerrarModalEditarInfoEntidad>&times;</button>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Id</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosEditarInfoEntidad.idInfo"
+                    [ngModelOptions]="{ standalone: true }"
+                    disabled
+                  />
                 </div>
+              </div>
             </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
-                <form role="form">
-                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Id Entidad</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosEditarInfoEntidad.idTabla" [ngModelOptions]="{standalone: true}" disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Id</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosEditarInfoEntidad.idInfo" [ngModelOptions]="{standalone: true}" disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input type="text" class="form-control" [(ngModel)]="datosEditarInfoEntidad.nombre" [ngModelOptions]="{standalone: true}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Descripcion</label>
-                                    <textarea class="form-control" [(ngModel)]="datosEditarInfoEntidad.descripcion" [ngModelOptions]="{standalone: true}" rows="4" style="resize: none;"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <!--<div class="col-md-6">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="datosEditarInfoEntidad.nombre"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Descripcion</label>
+                  <textarea
+                    class="form-control"
+                    [(ngModel)]="datosEditarInfoEntidad.descripcion"
+                    [ngModelOptions]="{ standalone: true }"
+                    rows="4"
+                    style="resize: none"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!--<div class="col-md-6">
                                 <div class="form-group">
                                     <label>Entidad (opcional)</label>
                                     <select #selectList4 class="custom-select" (change)="getEntidades(selectList4.value)" [(ngModel)]="datosEditarInfoEntidad.idTablaEntidad" [ngModelOptions]="{standalone: true}">
@@ -276,28 +464,50 @@
                                     </select>
                                 </div>
                             </div>-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Id Padre Entidad (opcinal)</label>
-                                    <select #selectList5 class="custom-select" (change)="getEntidadesTabla(selectList5.value)" [(ngModel)]="datosEditarInfoEntidad.idPadre" [ngModelOptions]="{standalone: true}">
-                                        <option [value]="1000">--Seleccione--</option>
-                                        <option *ngFor="let entTabla of entidadTabla" [value]="entTabla.id">
-                                            {{entTabla.nombre}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Id Padre Entidad (opcinal)</label>
+                  <select
+                    #selectList5
+                    class="custom-select"
+                    (change)="getEntidadesTabla(selectList5.value)"
+                    [(ngModel)]="datosEditarInfoEntidad.idPadre"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <option [value]="1000">--Seleccione--</option>
+                    <option
+                      *ngFor="let entTabla of entidadTabla"
+                      [value]="entTabla.id"
+                    >
+                      {{ entTabla.nombre }}
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" #btnEditarInfoEntidad (click)="editarInfoEntidad()">Guardar</button>
-            </div>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          #btnEditarInfoEntidad
+          (click)="editarInfoEntidad()"
+        >
+          Guardar
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
-    <p style="color: white"> Loading... </p>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
 </ngx-spinner>

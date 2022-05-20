@@ -1,5 +1,5 @@
 export class PuntoFuncion {
-    id:number;
-    numero:number;
-    nombre:string;
+  id: number;
+  numero: number;
+  nombre: string;
 }

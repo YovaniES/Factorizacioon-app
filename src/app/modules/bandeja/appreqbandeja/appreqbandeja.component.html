@@ -5,143 +5,213 @@
       <div class="col-sm-6">
         <h1>Bandeja de Requerimiento</h1>
       </div>
-      <div class="col-sm-6">
-      </div>
+      <div class="col-sm-6"></div>
     </div>
-  </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.container-fluid -->
 </section>
 
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-        <!-- Buscador -->
-        <div class="card card-primary">
-          <!-- form start -->
-          <form role="form">
-            <div class="card-body">
-              <div class="row">
-                <!-- left column -->
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label >PET</label>
-                    <input type="text" class="form-control" [(ngModel)]="busqueda.texto" [ngModelOptions]="{standalone: true}">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label >Servicio</label>
-                    <select class="custom-select" [(ngModel)]="busqueda.servicio" [ngModelOptions]="{standalone: true}" >
-                      <option *ngFor="let neg of servicios " [value]="neg.idCorrelativo">
-                        {{neg.label}}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <!-- left column -->
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label >Estado</label>
-                    <select class="custom-select"  [(ngModel)]="busqueda.estado" [ngModelOptions]="{standalone: true}">
-                      <option *ngFor="let est of estados" [value]="est.value">
-                        {{est.label}}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label >Fecha Inicio</label>
-                    <input type="date" class="form-control" [value]="busqueda.fechaInicio|date:'yyyy-MM-dd'" #fechaInicio (blur)="actualizarFechaInicio(fechaInicio.value)" />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label >Fecha Fin</label>
-                    <input type="date" class="form-control" [value]="busqueda.fechaFin|date:'yyyy-MM-dd'" #fechaFin (blur)="actualizarFechaFin(fechaFin.value)"/>
-                  </div>
-                </div>
+    <!-- Buscador -->
+    <div class="card card-primary">
+      <!-- form start -->
+      <form role="form">
+        <div class="card-body">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>PET</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="busqueda.texto"
+                  [ngModelOptions]="{ standalone: true }"
+                />
               </div>
             </div>
-            <!-- /.card-body -->
-
-            <div class="card-footer">
-              <div class="row">
-                <div class="col-12 text-center">
-                  <button type="submit" class="btn btn-primary " (click)="buscar()">Buscar</button>
-                </div>
-                  
-              </div>
-            </div>
-          </form>
-        </div>
-        <!-- /.card -->
-
-        <div class="card card-default">
-          <div class="card-header">
-            <div class="row">
-              <div class="col-md-12">
-                <button type="button" class="btn btn-primary" routerLink="/agregarRequerimiento" [disabled]="!(role.ClienteNiubiz == usuario.user.rolId || role.CoordinadorTDP == usuario.user.rolId)">Agregar</button>
-                &nbsp; &nbsp;
-                <button type="button" class="btn btn-primary" (click)="exportExcel()" >Exportar</button>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Servicio</label>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="busqueda.servicio"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option
+                    *ngFor="let neg of servicios"
+                    [value]="neg.idCorrelativo"
+                  >
+                    {{ neg.label }}
+                  </option>
+                </select>
               </div>
             </div>
           </div>
-          <!-- /.card-header -->
-          <div class="card-body table-responsive table-sm">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Detalle</th>
-                  <th>PET</th>
-                  <th>Nombre</th>
-                  <th>Estado</th>
-                  <th>Tipología</th>
-                  <th>SubTipo</th>
-                  <th>Servicio</th>
-                  <th>Solicitante</th>
-                  <th>Fecha Registro</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let req of requerimientos | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalRequerimientos }" >
-                  <td>
-                      <a routerLink="/detalle/{{req.reqId}}" >
-                        <i class="fas fa-edit"></i>
-                      </a>
-                      &nbsp;
-                      <a routerLink="/statusSolicitud/{{req.codigo}}" >
-                        <i class="fas fa-chart-area"></i>
-                      </a>
-                      &nbsp;
-                      <a routerLink="/puntosFuncion/{{req.reqId}}" *ngIf="(role.CoordinadorQA == usuario.user.rolId || role.AnalistaQA == usuario.user.rolId)">
-                        <i class="fab fa-product-hunt"></i>
-                      </a>
-                  </td>
-                  <td>{{req.codigoPET}}</td>
-                  <td>{{req.tema}}</td>
-                  <td>{{req.estado}}</td>
-                  <td>{{req.tipoReq}}</td>
-                  <td>{{req.subTipoReq}}</td>
-                  <td>{{req.servicio}}</td>
-                  <td>{{req.responsableSegmento}}</td>
-                  <td>{{req.fechaEnvio}}</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Estado</label>
+                <select
+                  class="custom-select"
+                  [(ngModel)]="busqueda.estado"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  <option *ngFor="let est of estados" [value]="est.value">
+                    {{ est.label }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Fecha Inicio</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  [value]="busqueda.fechaInicio | date: 'yyyy-MM-dd'"
+                  #fechaInicio
+                  (blur)="actualizarFechaInicio(fechaInicio.value)"
+                />
+              </div>
+            </div>
           </div>
-          <!-- /.card-body -->
-          <div class="card-footer pb-0 pt-3">
-            <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Fecha Fin</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  [value]="busqueda.fechaFin | date: 'yyyy-MM-dd'"
+                  #fechaFin
+                  (blur)="actualizarFechaFin(fechaFin.value)"
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <!-- /.card -->
+        <!-- /.card-body -->
 
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-primary" (click)="buscar()">
+                Buscar
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- /.card -->
+
+    <div class="card card-default">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-12">
+            <button
+              type="button"
+              class="btn btn-primary"
+              routerLink="/agregarRequerimiento"
+              [disabled]="
+                !(
+                  role.ClienteNiubiz == usuario.user.rolId ||
+                  role.CoordinadorTDP == usuario.user.rolId
+                )
+              "
+            >
+              Agregar
+            </button>
+            &nbsp; &nbsp;
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="exportExcel()"
+            >
+              Exportar
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body table-responsive table-sm">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Detalle</th>
+              <th>PET</th>
+              <th>Nombre</th>
+              <th>Estado</th>
+              <th>Tipología</th>
+              <th>SubTipo</th>
+              <th>Servicio</th>
+              <th>Solicitante</th>
+              <th>Fecha Registro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let req of requerimientos
+                  | paginate
+                    : {
+                        itemsPerPage: 10,
+                        currentPage: page,
+                        totalItems: totalRequerimientos
+                      }
+              "
+            >
+              <td>
+                <a routerLink="/detalle/{{ req.reqId }}">
+                  <i class="fas fa-edit"></i>
+                </a>
+                &nbsp;
+                <a routerLink="/statusSolicitud/{{ req.codigo }}">
+                  <i class="fas fa-chart-area"></i>
+                </a>
+                &nbsp;
+                <a
+                  routerLink="/puntosFuncion/{{ req.reqId }}"
+                  *ngIf="
+                    role.CoordinadorQA == usuario.user.rolId ||
+                    role.AnalistaQA == usuario.user.rolId
+                  "
+                >
+                  <i class="fab fa-product-hunt"></i>
+                </a>
+              </td>
+              <td>{{ req.codigoPET }}</td>
+              <td>{{ req.tema }}</td>
+              <td>{{ req.estado }}</td>
+              <td>{{ req.tipoReq }}</td>
+              <td>{{ req.subTipoReq }}</td>
+              <td>{{ req.servicio }}</td>
+              <td>{{ req.responsableSegmento }}</td>
+              <td>{{ req.fechaEnvio }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer pb-0 pt-3">
+        <pagination-controls
+          (pageChange)="handlePageChange($event)"
+        ></pagination-controls>
+      </div>
+    </div>
+    <!-- /.card -->
   </div>
 </section>
 
-
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>

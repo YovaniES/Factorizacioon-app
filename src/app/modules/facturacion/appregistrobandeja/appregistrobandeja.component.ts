@@ -2,11 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/co
 import { RequerimientoService } from '../../../services/requerimiento.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { DatePipe, formatDate } from '@angular/common';
-//import { Usuario } from '../../../models/usuario';
 import { Usuario } from 'src/app/models/usuario';
-import { Role } from '../../../models/role';
-import { Workbook } from 'exceljs';
-import * as fs from 'file-saver';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
