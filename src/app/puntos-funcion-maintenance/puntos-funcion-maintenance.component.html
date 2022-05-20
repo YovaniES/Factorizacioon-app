@@ -1,0 +1,121 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Puntos Función</h1>
+      </div>
+      <div class="col-sm-6">
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+
+    <!--Add Punto Función-->
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Agregar Punto Función</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Codigo Único de Solicitudes</label>
+              <select class="form-control select2" style="width: 100%;" [(ngModel)]="idSolicitud" [ngModelOptions]="{standalone: true}" (change)="cargarPF()" disabled>
+                <option *ngFor="let ls of ListaSolicitudes" [value]="ls.idSolicitud">
+                  {{ls.codigoUnico}}
+                </option>
+              </select>
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label> PF </label>
+              <input type="text" class="form-control" [(ngModel)]="puntoFuncion.numero" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-12 col-sm-12">
+            <div class="form-group">
+              <label> Nombre </label>
+              <input type="text" class="form-control" [(ngModel)]="puntoFuncion.nombre" [ngModelOptions]="{standalone: true}">
+            </div>
+            <!-- /.form-group -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-12 text-center">
+
+            <button type="button" class="btn btn-primary " (click)="agregarPuntoFuncion()" *ngIf="!isActualizar">Agregar</button>
+            <button type="button" class="btn btn-primary " (click)="actualizarPuntoFuncion()" *ngIf="isActualizar">Actualizar</button>
+          </div>
+            
+        </div>
+      </div>
+    </div>
+    <!-- /.card -->
+
+
+    <!--Table-->
+    <div class="card card-default">
+      <!-- /.card-header -->
+      <div class="card-body table-responsive p-0">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Nro</th>
+              <th>Nombre</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lpf of ListaPF">
+              <td>PF{{lpf.idPf}}</td>
+              <td>{{lpf.nombre}}</td>
+              <td>
+                <a role="button" class="nav-link" (click)="editarPuntoFuncion(lpf.id)">
+                  <i class="fas fa-edit" ></i>
+                </a>
+                <a role="button" class="nav-link" (click)="eliminarPuntoFuncion(lpf.id)">
+                  <i class="fas fa-times"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+    <div class="row">
+      <div class="col-12">
+        <button type="button" class="btn btn-primary" (click)="regresarBandeja()">Regresar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

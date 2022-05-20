@@ -1,0 +1,300 @@
+<!-- Content Header (Page header) -->
+<!-- <section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-4">
+      <div class="col-sm-12">
+        <h1></h1>
+      </div>
+    </div>
+
+  </div>
+</section> -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <!-- Requerimiento -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Liquidación</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form role="form">
+        <div class="card-body">
+          <div class="row">
+
+            <!-- left column -->
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Código de Factura</label>
+                <input type="text" [disabled]="inicioRegistro" class="form-control">
+              </div>
+            </div>
+
+              <div class="col-md-3">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                    <label>Periodo - Año</label>
+                    <select class="custom-select" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.periodo" [ngModelOptions]="{standalone: true}"  >
+                          <option value="2025">2025</option>
+                          <option value="2024">2024</option>
+                          <option value="2023">2023</option>
+                          <option value="2022">2022</option>
+                          <option value="2021">2021</option>
+                          <option value="2020">2020</option>
+                          <option value="2019">2019</option>
+                          <option value="2018">2018</option>
+                    </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                    <label>Periodo - Mes</label>
+                      <select class="custom-select" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.mes" [ngModelOptions]="{standalone: true}"  >
+                        <option value="01">01-Enero</option>
+                        <option value="02">02-Febrero</option>
+                        <option value="03">03-Marzo</option>
+                        <option value="04">04-Abril</option>
+                        <option value="05">05-Mayo</option>
+                        <option value="06">06-Junio</option>
+                        <option value="07">07-Julio</option>
+                        <option value="08">08-Agosto</option>
+                        <option value="09">09-Setiembre</option>
+                        <option value="10">10-Octubre</option>
+                        <option value="11">11-Noviembre</option>
+                        <option value="12">12-Diciembre</option>
+                      </select>
+                  </div>
+                  </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-3">
+
+            </div> -->
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Tipo de Liquidación</label>
+               <select class="custom-select"  [(ngModel)]="registroAudio.idLiquidaciones" [ngModelOptions]="{standalone: true}"  >
+                      <option *ngFor="let leven of listaLiquidaciones" [value]="leven.idCorrelativo">
+                        {{leven.valorTexto1}}
+                      </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Proyecto</label>
+              <!--  <select class="custom-select"  [(ngModel)]="registroAudio.idProyecto" [ngModelOptions]="{standalone: true}" (change)="onSelect($event.target.value)"  > -->
+               <select class="custom-select"  [(ngModel)]="registroAudio.idProyecto" [ngModelOptions]="{standalone: true}"  >
+                      <option value="0">--Seleccione--</option>
+                      <option *ngFor="let leven of listaProyectos" [value]="leven.idCorrelativo">
+                        {{leven.valorTexto1}}
+                      </option>
+                </select>
+              </div>
+            </div>
+           <!--  {{ listaGestores | json }} -->
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Subservicio</label>
+                <input type="text" class="form-control" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.subservicio" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Gestors</label>
+
+               <!--  <select class="custom-select" id="id_gestor">
+                      <option *ngFor="let gest of listaGestores" [value]="gest.id">
+                        {{gest.valor_texto_1}}
+                      </option>
+                </select> -->
+                 <select class="custom-select" [(ngModel)]="registroAudio.idGestor"
+                   [ngModelOptions]="{standalone: true}">
+                   <option value="0">--Seleccione--</option>
+                   <option *ngFor="let leven of listaGestores" [value]="leven.idCorrelativo">
+                     {{leven.valorTexto1}}
+                   </option>
+                 </select>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Importe</label>
+                <input type="text" class="form-control" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.venta_declarada" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+
+              <div class="col-md-3">
+              <div class="form-group">
+                <label>Estado</label>
+               <select class="custom-select"  [(ngModel)]="registroAudio.idEstado" [ngModelOptions]="{standalone: true}"  >
+                      <option *ngFor="let leven of listaEstado" [value]="leven.idCorrelativo">
+                        {{leven.valorTexto1}}
+                      </option>
+
+                </select>
+              </div>
+            </div>
+             <!-- <div class="col-md-3">
+              <div class="form-group">
+                <label for="exampleInputFile">File inpute</label>
+                <div class="input-group">
+                  <input type="file" (change)="handleFiles($event)">
+                </div>
+              </div>
+           </div> -->
+
+            <!-- <div class="col-md-3">
+              <div class="form-group">
+                <label>Orden de Compra</label>
+                <input type="text" class="form-control" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.orden_compra" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+
+             <div class="col-md-3">
+              <div class="form-group">
+                <label>Certificación</label>
+                <input type="text" class="form-control" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.certificacion" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Factura</label>
+                <input type="text" class="form-control" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.factura" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+
+             <div class="col-md-3">
+              <div class="form-group">
+                <label>Monto Facturado</label>
+                <input type="text" class="form-control" [disabled]="!inicioRegistro" [(ngModel)]="registroAudio.monto_facturado" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div> -->
+
+
+
+            <!-- left column -->
+
+
+
+
+
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </form>
+    </div>
+
+
+
+    <!-- /.comentario -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Comentarios Generales</h3>
+      </div>
+      <form role="form">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <textarea
+                  rows="2"
+                  class="form-control"
+                  [disabled]="!inicioRegistro"
+                  [(ngModel)]="registroAudio.comentariosGenerales"
+                  [ngModelOptions]="{ standalone: true }"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <!-- /.card -->
+    <div class="row">
+      <div class="col-12">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#modalRegreso"
+        >
+          Regresar
+        </button>
+        <button
+          type="button"
+          [disabled]="!inicioRegistro"
+          class="btn btn-primary float-right"
+          (click)="guardarRegistro()"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--modal Confirmacion de regreso-->
+<div class="modal fade" id="modalRegreso" role="dialog" #modalRegreso>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Regresar a Bandeja Principal</h5>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div>
+                  <label style="font-weight: normal">¿Desea regresar?</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="cancelarRegreso()"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="regresar()"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>

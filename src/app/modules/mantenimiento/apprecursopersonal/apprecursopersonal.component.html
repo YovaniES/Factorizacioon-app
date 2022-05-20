@@ -1,0 +1,437 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>ASIGNAR RECURSOS</h1>
+            </div>
+            <!--<div class="col-sm-6" style="text-align: right;">
+                <h6>{{datosPersonalEditar.nombre}} {{datosPersonalEditar.apellidoPaterno}} {{datosPersonalEditar.apellidoMaterno}}</h6>
+            </div>-->
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-primary">
+            <form role="form">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Nombres</label>
+                                <input type="text" class="form-control" [(ngModel)]="datosPersonalEditar.nombre" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Apellido Paterno</label>
+                                <input type="text" class="form-control" [(ngModel)]="datosPersonalEditar.apellidoPaterno" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Apellido Materno</label>
+                                <input type="text" class="form-control" [(ngModel)]="datosPersonalEditar.apellidoMaterno" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>DNI</label>
+                                <input type="text" class="form-control" [(ngModel)]="datosPersonalEditar.dni" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Correo</label>
+                                <input type="text" class="form-control" [(ngModel)]="datosPersonalEditar.correo" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Cód.Corporativo</label>
+                                <input type="text" class="form-control" [(ngModel)]="datosPersonalEditar.codCorporativo" [ngModelOptions]="{standalone: true}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Fecha Nacimiento</label>
+                                <input type="date" class="form-control" [value]="datosPersonalEditar.fechaNacimiento|date:'yyyy-MM-dd'" #fechaNacimiento (blur)="actualizarFechaNacimiento(fechaNacimiento.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Cód.Proyecto</label> 
+                                &nbsp;&nbsp;
+                                <i class="fas fa-clipboard-list" data-toggle="modal" data-target="#modalProyectos"></i>
+                                <select  class="custom-select" [(ngModel)]="datosPersonalEditar.codProyecto" [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let pro of proyectos" [value]="pro.id">
+                                        {{pro.codigo}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Cód.Perfil</label>
+                                <select #selectList2 class="custom-select" (change)="getInfoPerfil(selectList2.value)" [(ngModel)]="datosPersonalEditar.codPerfil" [ngModelOptions]="{standalone: true}">
+                                    <option *ngFor="let perf of perfiles" [value]="perf.id">
+                                        {{perf.nombre}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Fecha Ingreso</label>
+                                <input type="date" class="form-control" [value]="datosPersonalEditar.fechaIngreso|date:'yyyy-MM-dd'" #fechaIngreso (blur)="actualizarFechaIngreso(fechaIngreso.value)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary" (click)="updatePersonal()" #btnEditarPersonal>Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!--Recurso - Hardware-->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title"> Recurso - Hardware </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive table-sm">
+                <table class="table table-hover" style="width: 1500px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;text-align: center;">Accion</th>
+                            <th style="width: 50px;text-align: center;">Id</th>
+                            <th style="width: 100px;text-align: center;">Tipo</th>
+                            <th style="width: 100px;text-align: center;">Marca</th>
+                            <th style="width: 100px;text-align: center;">Serie</th>
+                            <th style="width: 250px;text-align: center;">Descripcion</th>
+                            <th style="width: 100px;text-align: center;">Modelo</th>
+                            <th style="width: 100px;text-align: center;">IMEI</th>
+                            <th style="width: 250px;text-align: center;">Observacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hardware of listaHardwareAsignado">
+                            <td style="text-align: center;">
+                                <a type="button" (click)="quitarRecurso(hardware.id)">
+                                    <i id="icono" class="fas fa-times" data-toggle="tooltip" data-placement="top" title="Quitar Asignacion"></i>
+                                </a>
+                            </td>
+                            <td style="text-align: center;">{{hardware.id}}</td>
+                            <td style="text-align: center;">{{hardware.tipo}}</td>
+                            <td style="text-align: center;">{{hardware.marca}}</td>
+                            <td style="text-align: center;">{{hardware.serie}}</td>
+                            <td style="text-align: center;">{{hardware.descripcion}}</td>
+                            <td style="text-align: center;">{{hardware.modelo}}</td>
+                            <td style="text-align: center;">{{hardware.imei}}</td>
+                            <td style="text-align: center;">{{hardware.observacion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalHardware" (click)="getListaHardwareDisponible();nroPaginaH()">Buscar</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        <!-- Recurso - Perfil -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title"> Recurso - Cuenta </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive table-sm">
+                <table class="table table-hover" style="width: 1500px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;text-align: center;">Accion</th>
+                            <th style="width: 50px;text-align: center;">Id</th>
+                            <th style="width: 100px;text-align: center;">Usuario</th>
+                            <th style="width: 100px;text-align: center;">Password</th>
+                            <th style="width: 100px;text-align: center;">Tipo</th>
+                            <th style="width: 200px;text-align: center;">Fecha Ultima Renovacion</th>
+                            <th style="width: 200px;text-align: center;">Fecha Proxima Renovacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cuenta of listaCuentaAsignado">
+                            <td style="text-align: center;">
+                                <a type="button" (click)="quitarRecurso(cuenta.id)">
+                                    <i id="icono" class="fas fa-times" data-toggle="tooltip" data-placement="top" title="Quitar Asignacion"></i>
+                                </a>
+                            </td>
+                            <td style="text-align: center;">{{cuenta.id}}</td>
+                            <td style="text-align: center;">{{cuenta.usuario}}</td>
+                            <td style="text-align: center;">{{cuenta.password}}</td>
+                            <td style="text-align: center;">{{cuenta.tipo}}</td>
+                            <td style="text-align: center;">{{cuenta.fechaUltimaRenovacion}}</td>
+                            <td style="text-align: center;">{{cuenta.fechaProximaRenovacion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalPerfil" (click)='getListaCuentaDisponible();nroPaginaP()'>Buscar</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+
+        <!-- /.card -->
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary" (click)="regresarBandeja()">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!--Modal Hardware Disponible-->
+<div class="modal fade bd-example-modal-lg" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalHardware" role="dialog" #modalHardware>
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Hardware Disponible</h5>
+                </div>
+                <div>
+                    <button type="button" class="close" data-dismiss="modal" #cerrarModalHardware>&times;</button>
+                </div>
+            </div>
+            <br/>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="serie" [ngModelOptions]="{standalone: true}" placeholder="Buscar Serie...">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <select #selectList1 class="custom-select" (change)="getInfoTipo(selectList1.value)">
+                                <option [value]="0">--Seleccione Tipo--</option>
+                                <option *ngFor="let tip of tipo" [value]="tip.id">
+                                    {{tip.nombre}}
+                                </option>
+                            </select>
+                            <!--<input type="text" class="form-control" [(ngModel)]="datosPersonal.nombre" [ngModelOptions]="{standalone: true}">-->
+                        </div>
+                        <!--<div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="tipo" [ngModelOptions]="{standalone: true}" placeholder="Buscar Tipo...">
+                        </div>-->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <select #selectList2 class="custom-select" (change)="getInfoMarca(selectList2.value)">
+                                <option [value]="0">--Seleccione Marca--</option>
+                                <option *ngFor="let mar of marca" [value]="mar.id">
+                                    {{mar.nombre}}
+                                </option>
+                            </select>
+                        </div>
+                        <!--<div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="marca" [ngModelOptions]="{standalone: true}" placeholder="Buscar Marca...">
+                        </div>-->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" (click)="buscarRecursoHardware()">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="input-group">
+                    <input type="text" class="form-control" [(ngModel)]="serie" [ngModelOptions]="{standalone: true}" placeholder="Escribir Serie...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" (click)="buscarRecursoHardware()">Buscar</button>
+                    </span>
+                </div>-->
+            </div>
+            <div class="card-body table-responsive table-sm">
+                <table class="table table-hover" style="width: 1500px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;text-align: center;">Accion</th>
+                            <th style="width: 50px;text-align: center;">Id</th>
+                            <th style="width: 100px;text-align: center;">Tipo</th>
+                            <th style="width: 100px;text-align: center;">Marca</th>
+                            <th style="width: 100px;text-align: center;">Serie</th>
+                            <th style="width: 250px;text-align: center;">Descripcion</th>
+                            <th style="width: 100px;text-align: center;">Modelo</th>
+                            <th style="width: 100px;text-align: center;">IMEI</th>
+                            <th style="width: 250px;text-align: center;">Observacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hardware of listaHardwareDisponible | paginate: {id: 'Hardware', itemsPerPage: 6, currentPage: paginaInicioH}">
+                            <td style="text-align: center;">
+                                <a type="button" (click)="asignarRecusoPersona(hardware.id,'h')">
+                                    <i id="icono" class="fas fa-plus" data-toggle="tooltip" data-placement="top" title="Agregar"></i>
+                                </a>
+                            </td>
+                            <td style="text-align: center;">{{hardware.id}}</td>
+                            <td style="text-align: center;">{{hardware.tipo}}</td>
+                            <td style="text-align: center;">{{hardware.marca}}</td>
+                            <td style="text-align: center;">{{hardware.serie}}</td>
+                            <td style="text-align: center;">{{hardware.descripcion}}</td>
+                            <td style="text-align: center;">{{hardware.modelo}}</td>
+                            <td style="text-align: center;">{{hardware.imei}}</td>
+                            <td style="text-align: center;">{{hardware.observacion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="card-footer pb-0 pt-3">
+                    <pagination-controls (pageChange)="paginaInicioH = $event" id="Hardware"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Cuenta Disponible-->
+<div class="modal fade bd-example-modal-lg" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalPerfil" role="dialog" #modalPerfil>
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Cuenta Disponible</h5>
+                </div>
+                <div>
+                    <button type="button" class="close" data-dismiss="modal" #cerrarModalCuenta>&times;</button>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="cuentaUsuario" [ngModelOptions]="{standalone: true}" placeholder="Buscar Usuario...">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" (click)="buscarRecursoCuenta()">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body table-responsive table-sm">
+                <table class="table table-hover" style="width: 1500px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;text-align: center;">Accion</th>
+                            <th style="width: 50px;text-align: center;">Id</th>
+                            <th style="width: 100px;text-align: center;">Usuario</th>
+                            <th style="width: 100px;text-align: center;">Password</th>
+                            <th style="width: 100px;text-align: center;">Tipo</th>
+                            <th style="width: 200px;text-align: center;">Fecha Ultima Renovacion</th>
+                            <th style="width: 200px;text-align: center;">Fecha Proxima Renovacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cuenta of listaCuentaDisponible | paginate: {id: 'Perfil', itemsPerPage: 6, currentPage: paginaInicioP}">
+                            <td style="text-align: center;">
+                                <a type="button" (click)="asignarRecusoPersona(cuenta.id,'c')">
+                                    <i id="icono" class="fas fa-plus" data-toggle="tooltip" data-placement="top" title="Agregar"></i>
+                                </a>
+                            </td>
+                            <td style="text-align: center;">{{cuenta.id}}</td>
+                            <td style="text-align: center;">{{cuenta.usuario}}</td>
+                            <td style="text-align: center;">{{cuenta.password}}</td>
+                            <td style="text-align: center;">{{cuenta.tipo}}</td>
+                            <td style="text-align: center;">{{cuenta.fechaUltimaRenovacion}}</td>
+                            <td style="text-align: center;">{{cuenta.fechaProximaRenovacion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="card-footer pb-0 pt-3">
+                    <pagination-controls (pageChange)="paginaInicioP = $event" id="Perfil"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal proyectos-->
+<div class="modal fade bd-example-modal-lg" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalProyectos" role="dialog" #modalProyectos>
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Historico de Proyectos</h5>
+                </div>
+            </div>
+            <div class="card-body table-responsive table-sm">
+                <table class="table table-hover" style="width: 1500px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;text-align: center;">Código</th>
+                            <th style="width: 50px;text-align: center;">Descripción</th>
+                            <th style="width: 100px;text-align: center;">Fecha asignación</th>
+                            <th style="width: 100px;text-align: center;">Usuario Asignador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let proy of listaHistoricoProyectos">
+                            <td style="text-align: center;">{{proy.proyecto_codigo}}</td>
+                            <td style="text-align: center;">{{proy.proyecto_descripcion}}</td>
+                            <td style="text-align: center;">{{proy.fecha_asignacion}}</td>
+                            <td style="text-align: center;">{{proy.nombre_usuario_asignacion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="card-footer pb-0 pt-3">
+                    <pagination-controls (pageChange)="paginaInicioP = $event" id="Perfil"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>

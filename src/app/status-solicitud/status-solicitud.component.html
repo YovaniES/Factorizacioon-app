@@ -1,0 +1,238 @@
+
+<!-- /.content-header -->
+<div class="container-fluid" style="font-size:small">
+
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{avance | number:'1.0-2'}}<sup style="font-size: 20px">%</sup></h3>
+
+          <p>Avance ({{cantidad-pendiente-bloqueado}}/{{cantidad}}) [Desest: {{desestimado}}]</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>{{passrate | number:'1.0-2'}}<sup style="font-size: 20px">%</sup></h3>
+          <p>Pass Rate ({{cantidad-pendiente-error-bloqueado}} Ok|{{error}} Err)</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-thumbs-up"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3>{{pendiente + bloqueado}}<span style="font-size: 12px">- Pendiente</span></h3>
+
+          <p>Cant({{pendiente}} Qa|{{bloqueado}} Bloq)</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-danger">
+        <div class="inner">
+          <h3>{{hllcnt}}<span style="font-size: 12px">- Incidencias</span></h3>
+          <p>Cant ({{corregido}} Ok|{{hllcnt - corregido - cancelado}} Pdte|{{cancelado}} Cancel)
+        </div>
+        <div class="icon">
+          <i class="fas fa-thumbs-down"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+
+  <!-- Main row -->
+
+  <div class="row">
+    <!-- Left col -->
+    <div class="col-md-12">
+
+      <!-- /.row -->
+      <!-- TABLE: Ventana -->
+      <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table m-0 ">
+              <thead>
+                <tr>
+                  <th>Requerimiento</th>
+                  <th>Tipología</th>
+                  <th>Subtipo</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cate of resultado">
+                  <td>
+                    {{ nombre }} - {{ cate.tema }}
+                  </td>
+                  <td>
+                    <span>{{ cate.tipo_req }}</span>
+                  </td>
+
+                  <td>
+                    {{ cate.tipo_req2 }}
+                  </td>
+
+                  <td>
+                    {{ cate.estado_proyecto }}
+                  </td>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <!-- /.table-responsive -->
+        </div>
+        <!-- /.card-body -->
+
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    <!-- /.col -->
+  </div>
+
+  <div class="row">
+    <!-- Left col -->
+    <div class="col-md-12">
+
+      <!-- /.row -->
+      <!-- TABLE: Ventana -->
+      <div class="card">
+        <div class="card-header border-transparent">
+          <h3 class="card-title">Detalle</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.card-header -->
+
+        <div class="card-body">
+          <table class="table table-bordered table-sm" style="font-size:x-small" cellpadding="0">
+            <thead>
+              <tr>
+
+                <th colspan="5" style="font-size:small">Punto Función</th>
+                </tr>
+              <tr>
+                <th>Módulo</th>
+                <th>Caso de Prueba</th>
+                <th>Estado</th>
+                <th>incidencias</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let x of casprux">
+              <tr>
+                <th [attr.colspan]="5"><span style="font-size:small">{{ x.torneo }}</span></th>
+                </tr>
+              <tr>
+                <td><span>{{x.requerimientos[0].escenario}}</span></td>
+                <td><span>{{x.requerimientos[0].casoprueba}}</span></td>
+                <td>
+                  <span [ngStyle]="{'color': (x.requerimientos[0].estado == 'OK' || x.requerimientos[0].estado == 'CORREGIDO' ) ? 'green' : (x.requerimientos[0].estado == 'ERROR' || x.requerimientos[0].estado == 'BLOQUEADO' ) ? 'red':'blue', 'font-weight': 'bold'}">
+                    {{x.requerimientos[0].estado}}
+                  </span>
+                </td>
+                
+              </tr>
+              <tr *ngFor="let item of x.requerimientos| slice:1; let i = index;">
+                <td><span>{{item.escenario}}</span></td>
+                <td><span>{{item.casoprueba}}</span></td>
+                <td>
+                  <span [ngStyle]="{'color': (item.estado == 'OK' || item.estado == 'CORREGIDO' ) ? 'green' : (item.estado == 'ERROR' || item.estado == 'BLOQUEADO' ) ? 'red' : 'blue', 'font-weight': 'bold'}">
+                    {{item.estado}}
+                  </span>
+                </td>
+                <td>
+                  <span >{{item.incidencias}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <!-- /.card-body -->
+
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    <!-- /.col -->
+</div>
+
+
+  
+<!--detalle de hallazgos-->
+  <div class="container-fluid">
+
+    <!--Add Punto Función-->
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">INCIDENCIAS</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table m-0" >
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Estado</th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let h of hallazgo">
+                <td><span>{{h.id}}</span></td>
+                <td><span>{{h.estado}}</span></td>
+                <td><span>{{h.name}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+  </div>
+
+
+<!-- boton de regreso-->
+<div class="row">
+  <div class="col-12">
+    <button type="button" class="btn btn-primary" (click)="regresarBandeja()">Regresar</button>
+  </div>
+</div>
+</div><!--/. container-fluid -->
+
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

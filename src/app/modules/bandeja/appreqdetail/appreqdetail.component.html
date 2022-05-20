@@ -1,0 +1,390 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Detalle PET</h1>
+      </div>
+      <div class="col-sm-6">
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+        <!-- Requerimiento -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">PET</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form">
+            <div class="card-body">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label >PET</label>
+                    <input type="text" class="form-control"  value="{{requerimiento?.codigoPET}}" disabled>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label >Nombre de PET</label>
+                    <input type="text" class="form-control" [(ngModel)]="requerimiento.nombre" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)"> 
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label >Código Único</label>
+                    <input type="text" class="form-control"  value="{{requerimiento.codigoSolicitud}}" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Tipología</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.tipo" [ngModelOptions]="{standalone: true}" #t (change)="callSubtypes(t.value)" disabled>
+                      <option *ngFor="let t of tipos; let i= index" [value]="t.value" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">
+                        {{t.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Subtipo</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.subtipo" [ngModelOptions]="{standalone: true}" disabled>
+                      <option *ngFor="let st of subTipos; let i= index" [value]="st.value">
+                        {{st.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label >Descripción</label>
+                    <textarea rows="2" class="form-control"  value="{{requerimiento?.descripcion}}" disabled></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+          </form>
+        </div>
+        <!-- /.card -->
+
+        <!-- Solicitante -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Solicitante</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form">
+            <div class="card-body">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Nombres y Apellidos</label>
+                    <input type="text" class="form-control"  value="{{requerimiento?.solicitanteNombre}}"disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Correo</label>
+                    <input type="text" class="form-control"  value="{{requerimiento?.solicitanteCorreo}}" disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+          </form>
+        </div>
+        <!-- /.card -->
+
+        <!-- Datos adicionales -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Datos Adicionales</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" >
+            <div class="card-body">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Complejidad</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.complejidad" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">
+                      <option *ngFor="let ges of complejidades; let i= index" [value]="ges.idCorrelativo" >
+                        {{ges.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Servicio</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.servicio" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">
+                      <option *ngFor="let neg of servicios; let i= index" [value]="neg.idCorrelativo">
+                        {{neg.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Segmento</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.segmento" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">
+                      <option *ngFor="let seg of segmentos; let i= index" [value]="seg.idCorrelativo">
+                        {{seg.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Producto</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.producto" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)"> 
+                      <option *ngFor="let prod of productos; let i= index" [value]="prod.idCorrelativo">
+                        {{prod.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Fecha Solicitud</label>
+                      <input type="text" class="form-control" #fechaSolicitud [value]="requerimiento.fechaSolicitud|date:'dd/MM/yyyy hh:mm'" disabled/>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Fecha Inicio de Pruebas</label>
+                    <input type="date" class="form-control" #fechaInicio [value]="requerimiento.fechaInicioPrueba|date:'yyyy-MM-dd'" (blur)="actualizarFechaInicioPrueba(fechaInicio.value)" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)"/>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Fecha Fin de Pruebas</label>
+                    <input type="date" class="form-control" #fechaFin [value]="requerimiento.fechaFinPrueba|date:'yyyy-MM-dd'" (blur)="actualizarFechaFinPrueba(fechaFin.value)" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)"/>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Estimación (Jornadas)</label>
+                      <input type="number" step=".1" class="form-control"  [(ngModel)]="requerimiento.estimacion" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)"/>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Cantidad de CP</label>
+                      <input type="number" min="0" step="1" class="form-control" [(ngModel)]="requerimiento.cantidadCP" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </form>
+        </div>
+        <!-- /.card -->
+
+        <!-- Integración -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Integración</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form">
+            <div class="card-body">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label >Código Mantis</label>
+                    <input type="text" class="form-control"  [(ngModel)]="requerimiento.codigoMantis" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label >Código Jira</label>
+                    <input type="text" class="form-control"  [(ngModel)]="requerimiento.codigoJira" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label >Código Testlink</label>
+                    <input type="text" class="form-control"  [(ngModel)]="requerimiento.codigoTestlink" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+          </form>
+        </div>
+        <!-- /.card -->
+
+        <!-- Estado -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Estado</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" >
+            <div class="card-body">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Estado</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.estado" [ngModelOptions]="{standalone: true}" #e (change)="getMotivos(e.value)" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">
+                      <option *ngFor="let est of estados; let i= index" [value]="est.value" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)" >
+                        {{est.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Motivo</label>
+                    <select class="custom-select" [(ngModel)]="requerimiento.motivoEstado" [ngModelOptions]="{standalone: true}" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">
+                      <option *ngFor="let mot of motivos; let i= index" [value]="mot.value" >
+                        {{mot.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+          </form>
+        </div>
+        <!-- /.card -->
+
+        <!--Archivos-->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title"> Archivo </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Fecha de Subida</th>
+                  <th>Descarga</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let file of requerimiento.archivos">
+                  <td>{{file.NombreArchivo}}</td>
+                  <td>{{file.Fecha | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                  <td><a href="http://{{file.urlArchivo}}">Link</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-12">
+                <input type="file" class="custom-file-input" #file (change)="onFileSelected($event.target.files)" hidden>
+                <button type="button" class="btn btn-primary float-right" (click)="file.click()" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">Adjuntar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card -->
+
+        <!-- historial de cambios -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title"> Historial de Cambios </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Estado</th>
+                  <th>Motivo</th>
+                  <th>Fecha y Hora de Cambio</th>
+                  <th>Usuario</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cambio of historicoCambios; let i= index">
+                  <td>{{i+1}}</td>
+                  <td>{{cambio.estado}}</td>
+                  <td>
+                    {{cambio.motivo}}
+                  </td>
+                  <td>
+                    {{cambio.fecha}}
+                  </td>
+                  <td>
+                    {{cambio.usuario}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        
+
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-primary" (click)="regresarBandeja()">Regresar</button>
+            <button type="button" class="btn btn-primary float-right" (click)="actualizarReq(requerimiento)" [disabled]="!(role.CoordinadorTDP == usuario.user.rolId || role.CoordinadorQA == usuario.user.rolId ||
+role.AnalistaQA == usuario.user.rolId)">Actualizar</button>
+          </div>
+        </div>
+  </div>
+</section>
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

@@ -1,0 +1,7 @@
+#icono {
+    color: dodgerblue;
+}
+
+#icono:hover {
+    color: blue;
+}

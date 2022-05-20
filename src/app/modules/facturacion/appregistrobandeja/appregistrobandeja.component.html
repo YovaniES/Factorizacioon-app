@@ -1,0 +1,347 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Bandeja de Facturación</h1>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Buscador -->
+        <div class="card card-primary">
+            <!-- form start -->
+            <form role="form">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Código Factura</label>
+                                  <input type="text" class="form-control"  name="codigo_incidencia" [(ngModel)]="busqueda.codigo_incidencia"  />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Estado</label>
+                                 <select class="custom-select" [(ngModel)]="busqueda.area" [ngModelOptions]="{standalone: true}">
+                                 <!--  <option *ngFor="let larea of listaAreas" [value]="larea.idCorrelativo">
+                                    {{larea.valorTexto1}}
+                                  </option> -->
+                                  <option value="">En elaboracion</option>
+                                  <option value="">Enviado</option>
+                                  <option value="">Aprobado</option>
+                                  <option value="">Certificado</option>
+                                  <option value="">Propuesto</option>
+                                  <option value="">Facturado</option>
+                                  <option value="">Cancelado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>F. Inicio Registro</label>
+                                <input type="date" class="form-control" name="fechaRegistroInicio" [(ngModel)]="busqueda.fechaRegistroInicio" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>F. Fin Registro</label>
+                                 <input type="date" class="form-control" name="fechaRegistroFin" [(ngModel)]="busqueda.fechaRegistroFin" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+
+                            <div class="col-md-8">
+                               <button type="button" class="btn btn-primary" (click)="irPagina()">crear</button>&nbsp;&nbsp;
+                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalActualizacionMasiva"
+                               (click)="cargarmodalActualizacionMasiva()" >Actualización Masiva</button>&nbsp;&nbsp;
+                               <button type="button" class="btn btn-success" (click)="reportefacturados()">R. Facturados</button>&nbsp;&nbsp;
+                               <button type="button" class="btn btn-success" (click)="reporteventadeclarada()">R. Venta
+                                 Declarada</button>
+                            </div>
+                            <!--  -->
+                            <div class="col-md-auto col-md-4 text-md-right">
+                               <button type="submit" class="btn btn-primary" (click)="limpiarBusqueda()">Limpiar</button>&nbsp;&nbsp;
+                               <button type="submit" class="btn btn-primary" (click)="buscar()">Buscar</button>
+                            </div>
+
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+
+        <div class="card card-default">
+            <!-- /.card-header -->
+            <div class="card-body table-responsive table-sm">
+                <!-- <table datatable  class="row-border hover"  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" > -->
+               <!--  <table datatable  class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  > -->
+                <table datatable  class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  >
+                    <thead>
+                        <tr>
+                          <th>Acción</th>
+                          <th>Cod. Factura</th>
+                          <th>Periodo</th>
+                          <th>Proyecto</th>
+                          <th>Liquidacion</th>
+                          <th>Subservicio</th>
+                          <th>Gestor</th>
+                          <th>Estado</th>
+                          <th>Importe</th>
+                          <th>Declarado</th>
+                          <th>Facturado</th>
+                          <!-- <th>O. Compra</th>
+                          <th>Certificacion</th>
+                          <th>Factura</th>
+                          <th>Monto</th> -->
+                         <!--  <th>Usuario</th> -->
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr *ngFor="let audio of data">
+                            <td style="text-align: center;">
+                                <a type="button">
+                                    <i id="icono" class="fas fa-edit" (click)="editar(audio.idFactura)" data-toggle="tooltip" data-placement="top" title="Editar"></i>
+                                </a>
+                                &nbsp;
+                                <a type="button" data-toggle="modal" data-target="#modalEliminacionLogica">
+                                    <i id="icono" class="far fa-trash-alt text-danger" (click)="abrirEliminar(audio.idFactura)" data-toggle="tooltip" data-placement="top" title="Eliminar"></i>
+                                </a>
+                                &nbsp;
+                                <a type="button" data-toggle="modal" data-target="#modalduplicidadRegistro">
+                                    <i id="icono" class="far fa-clone	text-success" (click)="cargarmodalduplicarRegistro(audio.idFactura)" data-toggle="tooltip" data-placement="top" title="Eliminar"></i>
+                                </a>
+                            </td>
+                            <td >{{audio.idFactura}}</td>
+                            <td >{{audio.periodo}}</td>
+                            <td >{{audio.proyecto}}</td>
+                            <td >{{audio.liquidacion}}</td>
+                            <td >{{audio.subServicio}}</td>
+                            <td >{{audio.gestor}}</td>
+                            <td >{{audio.estado}}</td>
+                            <td >{{audio.importe}}</td>
+                            <td >{{audio.declarado}}</td>
+                            <td >{{audio.facturado}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <!-- <div class="card-footer pb-0 pt-3">
+                <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+            </div> -->
+        </div>
+        <!-- /.card -->
+
+    </div>
+</section>
+
+<div class="modal fade" id="modalEliminacionLogica" role="dialog" #modalEliminacionLogica>
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Eliminar a un personal</h5>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <label style="font-weight: normal;">¿Desea eliminar?</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div>
+                                    <label style="font-weight: normal;">Registro con Id: {{idEliminar}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" (click)="cancelarEliminacion()">Cancelar</button>
+                <button type="button" class="btn btn-outline-success" (click)="confirmarEliminacion()" #btnEliminarPersonal>Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Editar Venta Declarada-->
+<div class="modal fade" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalActualizacionMasiva" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-top: 3px solid #28A745;">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Actualización Masiva</h5>
+                </div>
+                <div>
+                    <button type="button" class="close" data-dismiss="modal" #cerrarmodalActualizacionMasiva>&times;</button>
+                </div>
+            </div>
+            <div class="modal-body" style="padding-bottom: 0px;">
+                <form role="form">
+                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Proyecto</label>
+                                    <select class="custom-select"  [(ngModel)]="actualizacionmasiva.idProyecto" [ngModelOptions]="{standalone: true}"  >
+                                    <option value="0">--Seleccione--</option>
+                                    <option *ngFor="let leven of listaProyectos" [value]="leven.idCorrelativo">
+                                    {{leven.valorTexto1}}
+                                    </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Estado</label>
+                                    <select class="custom-select"  [(ngModel)]="actualizacionmasiva.idEstado" [ngModelOptions]="{standalone: true}"  >
+                                    <option value="0">--Seleccione--</option>
+                                    <option *ngFor="let leven of listaEstado" [value]="leven.idCorrelativo">
+                                    {{leven.valorTexto1}}
+                                    </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Periodo</label>
+                                     <input type="text" class="form-control" disabled [(ngModel)]="actualizacionmasiva.periodo" [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-outline-success" #btnEditarInfoEntidad (click)="editarInfoEntidad()">Guardar</button> -->
+                <button type="button" class="btn btn-outline-success" #btnEditarVentaDeclarada  (click)="editarActualizacionMasiva()"><i class="fa fa-edit"></i> &nbsp;Editar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Duplicar registro-->
+<div class="modal fade" aria-labelledby="myLargeModalLabel" tabindex="-1" aria-hidden="true" id="modalduplicidadRegistro" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-top: 3px solid #28A745;">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Duplicar Acta Nº : {{duplicarregistro.codigo_factura}}</h5>
+                </div>
+                <div>
+                    <button type="button" class="close" data-dismiss="modal" #cerrarmodalduplicidadRegistro>&times;</button>
+                </div>
+            </div>
+            <div class="modal-body" style="padding-bottom: 0px;">
+                <form role="form">
+                    <div class="card-body" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Proyecto</label>
+                                    <select class="custom-select" [(ngModel)]="duplicarregistro.idProyecto" disabled
+                                      [ngModelOptions]="{standalone: true}">
+                                    <option value="0">--Seleccione--</option>
+                                    <option *ngFor="let leven of listaProyectos" [value]="leven.idCorrelativo">
+                                    {{leven.valorTexto1}}
+                                    </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Subservicio</label>
+                                    <input type="text" class="form-control" disabled
+                                      [(ngModel)]="duplicarregistro.subservicio" [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label>Periodo - Año</label>
+                              <select class="custom-select"
+                                [(ngModel)]="duplicarregistro.periodo" [ngModelOptions]="{standalone: true}">
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                         <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label>Periodo - Mes</label>
+                              <select class="custom-select"
+                                [(ngModel)]="duplicarregistro.mes"
+                                [ngModelOptions]="{standalone: true}">
+                                <option value="01">01-Enero</option>
+                                <option value="02">02-Febrero</option>
+                                <option value="03">03-Marzo</option>
+                                <option value="04">04-Abril</option>
+                                <option value="05">05-Mayo</option>
+                                <option value="06">06-Junio</option>
+                                <option value="07">07-Julio</option>
+                                <option value="08">08-Agosto</option>
+                                <option value="09">09-Setiembre</option>
+                                <option value="10">10-Octubre</option>
+                                <option value="11">11-Noviembre</option>
+                                <option value="12">12-Diciembre</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-outline-success" #btnEditarInfoEntidad (click)="editarInfoEntidad()">Guardar</button> -->
+                <button type="button" class="btn btn-outline-success" #btnduplicidadRegistro
+                  (click)="editarduplicidadRegistro()"><i class="far fa-clone"></i> &nbsp;Duplicar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>

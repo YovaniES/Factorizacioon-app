@@ -1,0 +1,215 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Agregar Requerimiento</h1>
+      </div>
+      <div class="col-sm-6">
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+        <!-- Requerimiento -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">PET</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form">
+            <div class="card-body">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >PET</label>
+                    <input type="text" class="form-control"  [(ngModel)]="requerimiento.codigoPET" [ngModelOptions]="{standalone: true}" >
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Nombre de PET (*)</label>
+                    <input type="text" class="form-control" [(ngModel)]="requerimiento.nombre" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Tipología</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.tipo" [ngModelOptions]="{standalone: true}" #t (change)="callSubtypes(t.value)" >
+                      <option *ngFor="let t of tipos; let i= index" [value]="t.value">
+                        {{t.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Subtipo</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.subtipo" [ngModelOptions]="{standalone: true}" >
+                      <option *ngFor="let st of subTipos; let i= index" [value]="st.value">
+                        {{st.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label >Descripción</label>
+                    <textarea rows="2" class="form-control"  [(ngModel)]="requerimiento.descripcion" [ngModelOptions]="{standalone: true}" ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+          </form>
+        </div>
+        <!-- /.card -->
+
+        <!-- Solicitante -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Solicitante</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form">
+            <div class="card-body">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Nombres y Apellidos (*)</label>
+                    <input type="text" class="form-control"  [(ngModel)]="requerimiento.solicitanteNombre" [ngModelOptions]="{standalone: true}" >
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label >Correo (*)</label>
+                    <input type="text" class="form-control"  [(ngModel)]="requerimiento.solicitanteCorreo" [ngModelOptions]="{standalone: true}" >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+          </form>
+        </div>
+        <!-- /.card -->
+
+        <!-- Datos adicionales -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Datos Adicionales</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" >
+            <div class="card-body">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Complejidad</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.complejidad" [ngModelOptions]="{standalone: true}">
+                      <option *ngFor="let ges of complejidades; let i= index" [value]="ges.idCorrelativo">
+                        {{ges.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Servicio</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.servicio" [ngModelOptions]="{standalone: true}">
+                      <option *ngFor="let neg of servicios; let i= index" [value]="neg.idCorrelativo">
+                        {{neg.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Segmento</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.segmento" [ngModelOptions]="{standalone: true}">
+                      <option *ngFor="let seg of segmentos; let i= index" [value]="seg.idCorrelativo">
+                        {{seg.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label >Producto</label>
+                    <select class="custom-select"  [(ngModel)]="requerimiento.producto" [ngModelOptions]="{standalone: true}">
+                      <option *ngFor="let prod of productos; let i= index" [value]="prod.idCorrelativo">
+                        {{prod.label}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-12">
+                  
+                </div>
+              </div>
+              
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+
+        <!-- Archivos -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Adjuntar Archivo (*)</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" >
+            <div class="card-body">
+              <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile" (change)="onFileSelected($event.target.files)">
+                      <label class="custom-file-label" for="customFile">{{archivos ? archivos[0].name : "Elegir archivo"}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </form>
+        </div>
+        <!-- /.card -->
+
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-primary" (click)="regresarBandeja()">Regresar</button>
+            <button type="button" class="btn btn-primary float-right" (click)="agregarReq(requerimiento)">Agregar</button>
+          </div>
+        </div>
+  </div>
+</section>
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
