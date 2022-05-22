@@ -23,14 +23,26 @@ import { AppFacturacionComponent } from "./modules/facturacion/appregistrobandej
 import { AddRegistroComponent } from "./modules/facturacion/add-registro-audio/add-registro-audio.component";
 import { EditFacturacionComponent } from "./modules/facturacion/edit-registro-audio/edit-registro-audio.component";
 import { LoginComponent } from "./login/login.component";
+import { BaseComponent } from "./layout/base/base.component";
 // import { LoginComponent } from "./views/auth/login/login.component";
 
 const routes: Routes = [
+  { path: "login", component: LoginComponent },
+  // {
+  //   path: "login",
+  //   loadChildren: () =>
+  //     import("./views/auth/auth.module").then((m) => m.AuthModule),
+  // },
+
   {
     path: "",
-    component: MainComponent,
+    component: BaseComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path:'home',
+        loadChildren:()=>import('./views/pages/home/home.module').then(m=>m.HomeModule),
+      },
       {
         path: "detalle/:id",
         component: AppreqdetailComponent,
@@ -119,13 +131,8 @@ const routes: Routes = [
       },
     ],
   },
-
-  { path: "login", component: LoginComponent },
-  // {
-  //   path: "login",
-  //   loadChildren: () =>
-  //     import("./views/auth/auth.module").then((m) => m.AuthModule),
-  // },
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '**', pathMatch: 'full', redirectTo: '/home' },
   { path: "forgotPassword", component: ForgotPasswordComponent },
   { path: "newPassword/:uid", component: NewPasswordComponent },
 ];

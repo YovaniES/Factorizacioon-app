@@ -5,7 +5,7 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -19,6 +19,6 @@
       "dom",
       "esnext", "esnext.asynciterable"
     ],
-    "skipLibCheck": true 
+    "skipLibCheck": true
   }
 }

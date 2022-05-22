@@ -1,83 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-// import Swal from 'sweetalert2';
-
-import { first } from 'rxjs/operators';
+import { Component, OnInit } from "@angular/core";
+// import { AuthenticationService } from "../services/authentication.service";
+import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
-import { AuthService } from '../../auth.service';
-
+import { first } from "rxjs/operators";
+import { AuthenticationService } from "src/app/services/authentication.service";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.sass", "./loginStyle.css"],
 })
 export class LoginComponent implements OnInit {
-
-  username:string;
-  password:string;
-  currentUser:any;
-
-
-  public myLoginForm: FormGroup = this.fb.group({
-    username: [localStorage.getItem('username') || 'incamelo', [Validators.required]],
-    password: ['incamelo', [Validators.required, Validators.minLength(4)]],
-  });
+  username: string;
+  password: string;
+  currentUser: any;
 
   constructor(
-    private fb: FormBuilder,
+    private authentication: AuthenticationService,
     private router: Router,
-    private authService: AuthService,
-
-    private spinner:NgxSpinnerService
+    private spinner: NgxSpinnerService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
-  /* login() {
-    const { username, password } = this.myLoginForm.value;
-
-    this.authService.login(username, password).subscribe((ok) => {
-      console.log('VALOR :', ok);
-      if (ok === true) {
-        this.router.navigateByUrl('/home');
-      } else {
-        Swal.fire('Error', 'Credenciales Erroneas', 'error');
-      }
-    });
-  } */
-
-  onSubmit(){
+  onSubmit() {
     this.spinner.show();
-    console.log('name ' +this.username);
-    console.log('password ' + this.password);
+    console.log("name " + this.username);
+    console.log("password " + this.password);
 
-    this.authService.login(this.username, this.password)
+    this.authentication
+      .login(this.username, this.password)
       .pipe(first())
       .subscribe(
-        data => {
+        (data) => {
           this.spinner.hide();
-          // Swal.fire('Inicio de Sesión', 'Bienvenid@ <br />' + this.authService.usuarioValue.user.nombres + ' ' + this.authService.usuarioValue.user.apellidoPaterno, 'success');
-          this.router.navigate(['']);
-
+          Swal.fire(
+            "Inicio de Sesión",
+            "Bienvenid@ <br />" +
+              this.authentication.usuarioValue.user.nombres +
+              " " +
+              this.authentication.usuarioValue.user.apellidoPaterno,
+            "success"
+          );
+          this.router.navigate([""]);
         },
-        error => {
+        (error) => {
           console.log(error);
           this.spinner.hide();
-          // Swal.fire('Inicio de Sesión', 'No se pudo iniciar Sesión', 'error');
+          Swal.fire("Inicio de Sesión", "No se pudo iniciar Sesión", "error");
         }
       );
-  }
-
-  campoNoValido(campo: string): boolean {
-    if (
-      this.myLoginForm.get(campo).invalid &&
-      this.myLoginForm.get(campo).touched
-    ) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }

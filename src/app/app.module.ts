@@ -3,8 +3,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { AppheaderComponent } from "./layout/appheader/appheader.component";
-import { AppmenuComponent } from "./layout/appmenu/appmenu.component";
+import { headerComponent } from "./layout/header/header.component";
+import { sidebarComponent } from "./layout/sidebar/sidebar.component";
 import { AppfooterComponent } from "./layout/appfooter/appfooter.component";
 import { AppreqdetailComponent } from "./modules/bandeja/appreqdetail/appreqdetail.component";
 import { HttpClientModule } from "@angular/common/http";
@@ -45,13 +45,15 @@ import { AppFacturacionComponent } from "./modules/facturacion/appregistrobandej
 import { AddRegistroComponent } from "./modules/facturacion/add-registro-audio/add-registro-audio.component";
 import { EditFacturacionComponent } from "./modules/facturacion/edit-registro-audio/edit-registro-audio.component";
 import { AuthModule } from "./views/auth/auth.module";
+import { LayoutModule } from "./layout/layout.module";
+import { HomeModule } from "./views/pages/home/home.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppheaderComponent,
-    AppmenuComponent,
-    AppfooterComponent,
+    // headerComponent,
+    // sidebarComponent,
+    // AppfooterComponent,
     AppreqdetailComponent,
     AppreqbandejaComponent,
     AppAddReqComponent,
@@ -91,7 +93,9 @@ import { AuthModule } from "./views/auth/auth.module";
     ConfirmationPopoverModule.forRoot({ confirmButtonType: "danger" }), //FRANCIA
 
 
-    AuthModule
+    // AuthModule,
+    LayoutModule,
+    HomeModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe],

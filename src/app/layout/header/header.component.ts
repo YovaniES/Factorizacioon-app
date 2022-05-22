@@ -3,11 +3,11 @@ import { AuthenticationService } from "../../services/authentication.service";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-appheader",
-  templateUrl: "./appheader.component.html",
-  styleUrls: ["./appheader.component.sass"],
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.sass"],
 })
-export class AppheaderComponent implements OnInit {
+export class headerComponent implements OnInit {
   constructor(
     private authentication: AuthenticationService,
     private router: Router

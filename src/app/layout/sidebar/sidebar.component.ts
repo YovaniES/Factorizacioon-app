@@ -4,11 +4,11 @@ import { Router, ActivatedRoute } from "@angular/router";
 declare var $: any;
 
 @Component({
-  selector: "app-appmenu",
-  templateUrl: "./appmenu.component.html",
-  styleUrls: ["./appmenu.component.sass"],
+  selector: "app-sidebar",
+  templateUrl: "./sidebar.component.html",
+  styleUrls: ["./sidebar.component.sass"],
 })
-export class AppmenuComponent implements OnInit {
+export class sidebarComponent implements OnInit {
   currentUser: any;
   userFullName: String = "NA";
   userProfile: String = "NA";
