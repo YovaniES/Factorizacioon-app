@@ -44,6 +44,7 @@ import { AppEntidadComponent } from "./modules/entidades/appentidad/appentidad.c
 import { AppFacturacionComponent } from "./modules/facturacion/appregistrobandeja/appregistrobandeja.component";
 import { AddRegistroComponent } from "./modules/facturacion/add-registro-audio/add-registro-audio.component";
 import { EditFacturacionComponent } from "./modules/facturacion/edit-registro-audio/edit-registro-audio.component";
+import { AuthModule } from "./views/auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -88,6 +89,9 @@ import { EditFacturacionComponent } from "./modules/facturacion/edit-registro-au
     DataTablesModule,
     BrowserAnimationsModule, //FRANCIA
     ConfirmationPopoverModule.forRoot({ confirmButtonType: "danger" }), //FRANCIA
+
+
+    AuthModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [DatePipe],

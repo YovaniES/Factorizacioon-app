@@ -3,7 +3,6 @@ import { Routes, RouterModule } from "@angular/router";
 import { AppreqdetailComponent } from "./modules/bandeja/appreqdetail/appreqdetail.component";
 import { AppreqbandejaComponent } from "./modules/bandeja/appreqbandeja/appreqbandeja.component";
 import { AppAddReqComponent } from "./modules/bandeja/app-add-req/app-add-req.component";
-import { LoginComponent } from "./login/login.component";
 import { AuthGuard } from "./helpers/auth.guard";
 import { MainComponent } from "./modules/main/main.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
@@ -23,6 +22,8 @@ import { AppEntidadComponent } from "./modules/entidades/appentidad/appentidad.c
 import { AppFacturacionComponent } from "./modules/facturacion/appregistrobandeja/appregistrobandeja.component";
 import { AddRegistroComponent } from "./modules/facturacion/add-registro-audio/add-registro-audio.component";
 import { EditFacturacionComponent } from "./modules/facturacion/edit-registro-audio/edit-registro-audio.component";
+import { LoginComponent } from "./login/login.component";
+// import { LoginComponent } from "./views/auth/login/login.component";
 
 const routes: Routes = [
   {
@@ -118,7 +119,13 @@ const routes: Routes = [
       },
     ],
   },
+
   { path: "login", component: LoginComponent },
+  // {
+  //   path: "login",
+  //   loadChildren: () =>
+  //     import("./views/auth/auth.module").then((m) => m.AuthModule),
+  // },
   { path: "forgotPassword", component: ForgotPasswordComponent },
   { path: "newPassword/:uid", component: NewPasswordComponent },
 ];

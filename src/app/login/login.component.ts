@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "../services/authentication.service";
-import { Router, RouterStateSnapshot } from "@angular/router";
+import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { first } from "rxjs/operators";
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
     console.log("name " + this.username);
     console.log("password " + this.password);
+
     this.authentication
       .login(this.username, this.password)
       .pipe(first())
