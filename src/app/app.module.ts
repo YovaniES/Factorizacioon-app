@@ -3,9 +3,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { headerComponent } from "./layout/header/header.component";
-import { sidebarComponent } from "./layout/sidebar/sidebar.component";
-import { AppfooterComponent } from "./layout/appfooter/appfooter.component";
 import { AppreqdetailComponent } from "./modules/bandeja/appreqdetail/appreqdetail.component";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
@@ -20,7 +17,6 @@ import { ServicesModule } from "./services/services.module";
 import { DirectivesModule } from "./directives/directives.module";
 
 import { LoginComponent } from "./login/login.component";
-import { MainComponent } from "./modules/main/main.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { NewPasswordComponent } from "./new-password/new-password.component";
 import { DataTablesModule } from "angular-datatables";
@@ -51,14 +47,10 @@ import { HomeModule } from "./views/pages/home/home.module";
 @NgModule({
   declarations: [
     AppComponent,
-    // headerComponent,
-    // sidebarComponent,
-    // AppfooterComponent,
     AppreqdetailComponent,
     AppreqbandejaComponent,
     AppAddReqComponent,
     LoginComponent,
-    MainComponent,
     ForgotPasswordComponent,
     NewPasswordComponent,
     StatusSolicitudComponent,
@@ -91,7 +83,6 @@ import { HomeModule } from "./views/pages/home/home.module";
     DataTablesModule,
     BrowserAnimationsModule, //FRANCIA
     ConfirmationPopoverModule.forRoot({ confirmButtonType: "danger" }), //FRANCIA
-
 
     // AuthModule,
     LayoutModule,
