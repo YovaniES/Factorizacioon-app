@@ -6,6 +6,7 @@ import { BaseComponent } from "./base/base.component";
 import { AppfooterComponent } from "./appfooter/appfooter.component";
 import { sidebarComponent } from "./sidebar/sidebar.component";
 import { headerComponent } from "./header/header.component";
+import { MaterialModule } from "../material/material.module";
 
 @NgModule({
   declarations: [
@@ -13,12 +14,16 @@ import { headerComponent } from "./header/header.component";
     AppfooterComponent,
     headerComponent,
     sidebarComponent,
+
+
   ],
   exports:[
     BaseComponent,
     AppfooterComponent,
     headerComponent,
     sidebarComponent,
+
+    MaterialModule
   ],
   imports: [CommonModule, LayoutRoutingModule],
 })

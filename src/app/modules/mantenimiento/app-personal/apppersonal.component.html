@@ -113,9 +113,17 @@
             <div class="col-12 text-center">
               <button
                 type="submit"
-                class="btn btn-primary"
+                class="btn btn-secondary"
+                (click)="limpiarFiltro()"
+              ><mat-icon>rotate_left</mat-icon>
+                Limpiar
+              </button>
+
+              <button
+                type="submit"
+                class="btn btn-primary ml-2"
                 (click)="buscarPersona()"
-              >
+              ><mat-icon>search</mat-icon>
                 Buscar
               </button>
             </div>
@@ -135,7 +143,7 @@
               data-toggle="modal"
               data-target="#modalAgregar"
               (click)="limpiarFormAgregarPersonal()"
-            >
+            ><mat-icon>add</mat-icon>
               Agregar
             </button>
             &nbsp; &nbsp;
@@ -150,7 +158,7 @@
             <tr>
               <th style="width: 100px; text-align: center">Accion</th>
               <th style="width: 320px; text-align: center">Nombres</th>
-              <th style="width: 150px; text-align: center">DNI</th>
+              <!-- <th style="width: 150px; text-align: center">DNI</th> -->
               <th style="width: 250px; text-align: center">Cód.Proyecto</th>
               <th style="width: 250px; text-align: center">Cód.Corporativo</th>
               <th style="width: 150px; text-align: center">Estado</th>
@@ -231,7 +239,7 @@
               <td style="text-align: center">
                 {{ per.apellidos }}, {{ per.nombres }}
               </td>
-              <td style="text-align: center">{{ per.dni }}</td>
+              <!-- <td style="text-align: center">{{ per.dni }}</td> -->
               <td style="text-align: center">{{ per.codigo_proyecto }}</td>
               <td style="text-align: center">{{ per.codigo_corporativo }}</td>
               <td style="text-align: center">{{ per.estado }}</td>

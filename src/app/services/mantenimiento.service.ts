@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { PersonalInterface, BusquedaF, escalar } from '../models/mantenimiento';
+// import { map, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +11,33 @@ import { PersonalInterface, BusquedaF, escalar } from '../models/mantenimiento';
 
 export class MantenimientoService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
 
+  }
+
+  getListaMantenimientox(queryId){
+    const urlApiReq = environment.urlApi+'ExecuteQuery';
+    return this.http.post(urlApiReq,queryId)
   }
 
   /*PERSONAL INICIO*/
   getListaMantenimiento(queryId){
-    //const urlApiReq = environment.urlApi+'getcustomquery/'+queryId;//+'6-0-0-1-1-2-2'
-    //const httpParams = new HttpParams({fromObject: {filtros: '6'}});
-    //return this.http.get<Array<any>>(urlApiReq);
     const urlApiReq = environment.urlApi+'ExecuteQuery';
-    return this.http.post(urlApiReq,queryId);
+    return this.http.post(urlApiReq,queryId).pipe(
+      map((cuenta: any) => {
+        return cuenta.list.map((c: any) => {
+          return {
+            id                    : c.id,
+            usuario               : c.usuario,
+            password              : c.password,
+            tipo                  : c.tipo,
+            fechaUltimaRenovacion : c.fechaUltimaRenovacion,
+            fechaProximaRenovacion: c.fechaProximaRenovacion,
+            estado                : c.estado,
+            nombres               : c.nombres
+          }
+        })
+    }));
   }
 
   getProyectos(queryId){
@@ -253,7 +271,7 @@ export class MantenimientoService {
     const urlApiReq = environment.urlApi+'getcustomquery/'+'4-PAR_REQID-0000';
     return this.http.get(urlApiReq);
   }
-  
+
   getAllSegmento(){
     const urlApiReq = environment.urlApi+'getcustomquery/'+'11-PAR_REQID-0000';
     return this.http.get(urlApiReq);
@@ -268,7 +286,7 @@ export class MantenimientoService {
     const urlApiReq = environment.urlApi+'getcustomquery/'+'12-PAR_REQID-0000';
     return this.http.get(urlApiReq);
   }
-  
+
   getEstados(){
     const urlApiReq = environment.urlApi+'getcustomquery/'+'5-xxx-0000';
     return this.http.get(urlApiReq);
@@ -319,7 +337,7 @@ export class MantenimientoService {
       "queryId": 78
     });
   }
-  
+
   updateRequerimiento(req:RequerimientoInterface, fechaCambio: string, usuarioId:number){
     const urlApiReq = environment.urlApi+'ExecuteQuery';
     return this.http.post(urlApiReq,{

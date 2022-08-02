@@ -4,7 +4,6 @@ import { AppreqdetailComponent } from "./modules/bandeja/appreqdetail/appreqdeta
 import { AppreqbandejaComponent } from "./modules/bandeja/appreqbandeja/appreqbandeja.component";
 import { AppAddReqComponent } from "./modules/bandeja/app-add-req/app-add-req.component";
 import { AuthGuard } from "./helpers/auth.guard";
-import { MainComponent } from "./modules/main/main.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { NewPasswordComponent } from "./new-password/new-password.component";
 import { StatusSolicitudComponent } from "./status-solicitud/status-solicitud.component";
@@ -22,18 +21,14 @@ import { AppEntidadComponent } from "./modules/entidades/appentidad/appentidad.c
 import { AppFacturacionComponent } from "./modules/facturacion/appregistrobandeja/appregistrobandeja.component";
 import { AddRegistroComponent } from "./modules/facturacion/add-registro-audio/add-registro-audio.component";
 import { EditFacturacionComponent } from "./modules/facturacion/edit-registro-audio/edit-registro-audio.component";
-import { LoginComponent } from "./login/login.component";
 import { BaseComponent } from "./layout/base/base.component";
-// import { LoginComponent } from "./views/auth/login/login.component";
 
 const routes: Routes = [
-  { path: "login", component: LoginComponent },
-  // {
-  //   path: "login",
-  //   loadChildren: () =>
-  //     import("./views/auth/auth.module").then((m) => m.AuthModule),
-  // },
-
+  {
+    path: "login",
+    loadChildren: () =>
+      import("./views/auth/auth.module").then((m) => m.AuthModule),
+  },
   {
     path: "",
     component: BaseComponent,

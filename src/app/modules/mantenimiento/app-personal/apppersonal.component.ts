@@ -155,6 +155,22 @@ export class AppPersonalComponent implements OnInit {
     });
   }*/
 
+  limpiarFiltro(){
+    this.busqueda.apellidoPaterno = "",
+    this.busqueda.apellidoMaterno = "",
+    this.busqueda.correo          = "",
+    this.busqueda.dni             = "",
+    this.busqueda.codCorporativo  = "",
+    this.busqueda.perfil          = "",
+    this.busqueda.codProyecto = "",
+    this.busqueda.fechaIngresoInicio = "",
+    this.busqueda.fechaIngresoFin = "",
+    this.busqueda.estado = "",
+    this.busqueda.imei = "",
+
+    this.getListaPersonal();
+  }
+
   getListaPersonal() {
     this.spinner.show();
     let arrayParametro: any[] = [
@@ -162,23 +178,23 @@ export class AppPersonalComponent implements OnInit {
         queryId: 6,
       },
     ];
-    this._service.getListaMantenimiento(arrayParametro[0]).subscribe((data) => {
+    this._service.getListaMantenimientox(arrayParametro[0]).subscribe((data) => {
       //this.personal = data;
       const arrayData: any[] = Array.of(data);
       this.personal = [];
       for (let index = 0; index < arrayData[0].list.length; index++) {
         this.personal.push({
-          id: arrayData[0].list[index].id,
-          nombres: arrayData[0].list[index].nombres,
-          apellidos: arrayData[0].list[index].apellidos,
-          correo: arrayData[0].list[index].correo,
-          dni: arrayData[0].list[index].dni,
-          codigo_corporativo: arrayData[0].list[index].codigo_corporativo,
-          perfil: arrayData[0].list[index].perfil,
-          codigo_proyecto: arrayData[0].list[index].codigo_proyecto,
+          id                  : arrayData[0].list[index].id,
+          nombres             : arrayData[0].list[index].nombres,
+          apellidos           : arrayData[0].list[index].apellidos,
+          correo              : arrayData[0].list[index].correo,
+          dni                 : arrayData[0].list[index].dni,
+          codigo_corporativo  : arrayData[0].list[index].codigo_corporativo,
+          perfil              : arrayData[0].list[index].perfil,
+          codigo_proyecto     : arrayData[0].list[index].codigo_proyecto,
           proyecto_descripcion: arrayData[0].list[index].proyecto_descripcion,
-          fecha_ingreso: arrayData[0].list[index].fecha_ingreso,
-          estado: arrayData[0].list[index].estado,
+          fecha_ingreso       : arrayData[0].list[index].fecha_ingreso,
+          estado              : arrayData[0].list[index].estado,
         });
       }
       this.spinner.hide();

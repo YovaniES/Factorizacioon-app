@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Usuario } from "../models/usuario";
 import { Role } from "../models/role";
@@ -24,13 +24,9 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(usuario: string, password: string) {
+  login(loginData: any) {
     const urlApiReq = environment.apiSeguridadUrl + "login";
-    return this.http
-      .post<any>(urlApiReq, {
-        username: usuario,
-        password: password,
-      })
+    return this.http.post<any>(urlApiReq, {loginData })
       .pipe(
         map((user) => {
           localStorage.removeItem("currentUser");
@@ -40,6 +36,19 @@ export class AuthenticationService {
         })
       );
   }
+
+
+  loginx(loginData: Usuario) {
+    const urlApiReq = environment.apiSeguridadUrl + "login";
+
+    return this.http.post<any>(urlApiReq, loginData).pipe(
+      tap((resp: any) => {
+        localStorage.setItem('token', resp.user.token);
+        localStorage.setItem('currentUser', JSON.stringify(resp));
+      })
+    );
+  }
+
 
   logout() {
     // remove user from local storage and set current user to null

@@ -23,7 +23,8 @@ export class AppCuentaComponent implements OnInit {
   idTipo: any;
   marca: Array<any> = [];
   tipo: Array<any> = [];
-  listaCuenta: Array<any> = [];
+  listaCuenta: any[] = [];
+
   @ViewChild("modalEliminar") modalEliminar: ElementRef;
   @ViewChild("btnGuardarCuenta") btnGuardarCuenta: ElementRef;
   @ViewChild("btnGuardarTipo") btnGuardarTipo: ElementRef;
@@ -66,36 +67,28 @@ export class AppCuentaComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.spinner.hide();
     this.getListaCuenta();
     this.getListaTipo();
   }
 
   getListaCuenta() {
     this.spinner.show();
-    let arrayParametro: any[] = [
-      {
-        queryId: 38,
-      },
-    ];
-    this._service.getListaMantenimiento(arrayParametro[0]).subscribe((data) => {
-      //this.personal = data;
-      const arrayData: any[] = Array.of(data);
-      this.listaCuenta = [];
-      for (let index = 0; index < arrayData[0].list.length; index++) {
-        this.listaCuenta.push({
-          id: arrayData[0].list[index].id,
-          usuario: arrayData[0].list[index].usuario,
-          password: arrayData[0].list[index].password,
-          tipo: arrayData[0].list[index].tipo,
-          fechaUltimaRenovacion:
-            arrayData[0].list[index].fecha_ultima_renovacion,
-          fechaProximaRenovacion:
-            arrayData[0].list[index].fecha_proxima_renovacion,
-          estado: arrayData[0].list[index].estado,
-          nombres: arrayData[0].list[index].nombres,
-        });
-      }
+    let parametro: any[] = [{ queryId: 38 }];
+    this._service.getListaMantenimiento(parametro[0]).subscribe((resp) => {
+      // const arrayData: any[] = Array.of(resp);
+      this.listaCuenta = resp;
+      // for (let index = 0; index < arrayData[0].list.length; index++) {
+      //   this.listaCuenta.push({
+      //     id                    : arrayData[0].list[index].id,
+      //     usuario               : arrayData[0].list[index].usuario,
+      //     password              : arrayData[0].list[index].password,
+      //     tipo                  : arrayData[0].list[index].tipo,
+      //     fechaUltimaRenovacion : arrayData[0].list[index].fecha_ultima_renovacion,
+      //     fechaProximaRenovacion: arrayData[0].list[index].fecha_proxima_renovacion,
+      //     estado                : arrayData[0].list[index].estado,
+      //     nombres               : arrayData[0].list[index].nombres,
+      //   });
+      // }
       this.spinner.hide();
     });
   }
@@ -317,6 +310,12 @@ export class AppCuentaComponent implements OnInit {
       });
     }
     this.spinner.hide();
+  }
+
+  limpiarFiltro() {
+    this.cuentaUsuario = "";
+    this.idEstadoBuscar = "";
+    this.getListaCuenta();
   }
 
   btnAgregarHardware() {

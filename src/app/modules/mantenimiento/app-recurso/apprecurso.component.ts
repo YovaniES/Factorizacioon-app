@@ -93,7 +93,7 @@ export class AppRecursoComponent implements OnInit {
         queryId: 15,
       },
     ];
-    this._service.getListaMantenimiento(arrayParametro[0]).subscribe((data) => {
+    this._service.getListaMantenimientox(arrayParametro[0]).subscribe((data) => {
       //this.personal = data;
       const arrayData: any[] = Array.of(data);
       this.recurso = [];

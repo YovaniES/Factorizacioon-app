@@ -16,7 +16,7 @@ import { OrderModule } from "ngx-order-pipe";
 import { ServicesModule } from "./services/services.module";
 import { DirectivesModule } from "./directives/directives.module";
 
-import { LoginComponent } from "./login/login.component";
+// import { LoginComponent } from "./auth/login/login.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { NewPasswordComponent } from "./new-password/new-password.component";
 import { DataTablesModule } from "angular-datatables";
@@ -40,7 +40,7 @@ import { AppEntidadComponent } from "./modules/entidades/appentidad/appentidad.c
 import { AppFacturacionComponent } from "./modules/facturacion/appregistrobandeja/appregistrobandeja.component";
 import { AddRegistroComponent } from "./modules/facturacion/add-registro-audio/add-registro-audio.component";
 import { EditFacturacionComponent } from "./modules/facturacion/edit-registro-audio/edit-registro-audio.component";
-import { AuthModule } from "./views/auth/auth.module";
+// import { AuthModule } from "./views/auth/auth.module";
 import { LayoutModule } from "./layout/layout.module";
 import { HomeModule } from "./views/pages/home/home.module";
 
@@ -50,7 +50,7 @@ import { HomeModule } from "./views/pages/home/home.module";
     AppreqdetailComponent,
     AppreqbandejaComponent,
     AppAddReqComponent,
-    LoginComponent,
+    // LoginComponent,
     ForgotPasswordComponent,
     NewPasswordComponent,
     StatusSolicitudComponent,

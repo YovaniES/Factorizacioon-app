@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-// import { AuthenticationService } from "../services/authentication.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { first } from "rxjs/operators";
@@ -9,16 +9,18 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.sass", "./loginStyle.css"],
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  username: string;
-  password: string;
-  currentUser: any;
 
+  loginForm: FormGroup = this.fb.group({
+    username: ["jjsoto", [Validators.required]],
+    password: ["jjsoto", [Validators.required, Validators.minLength(6)]],
+  });
   constructor(
     private authentication: AuthenticationService,
     private router: Router,
+    private fb: FormBuilder,
     private spinner: NgxSpinnerService
   ) {}
 
@@ -26,21 +28,19 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.spinner.show();
-    console.log("name " + this.username);
-    console.log("password " + this.password);
 
     this.authentication
-      .login(this.username, this.password)
+      .loginx(this.loginForm.value)
       .pipe(first())
       .subscribe(
-        (data) => {
+        (resp) => {
+          console.log("AUTH", resp);
+
           this.spinner.hide();
           Swal.fire(
             "Inicio de Sesión",
             "Bienvenid@ <br />" +
-              this.authentication.usuarioValue.user.nombres +
-              " " +
-              this.authentication.usuarioValue.user.apellidoPaterno,
+              `${resp.user.nombres} ${resp.user.apellidoPaterno}`,
             "success"
           );
           this.router.navigate([""]);
@@ -51,5 +51,13 @@ export class LoginComponent implements OnInit {
           Swal.fire("Inicio de Sesión", "No se pudo iniciar Sesión", "error");
         }
       );
+  }
+
+  campoNoValido(campo: string): any {
+    // if (this.loginForm.get(campo)?.invalid && this.loginForm.get(campo)?.touched) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   }
 }
