@@ -1,3 +1,17 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.brand-link{
+  text-align: center;
+}
+
+.main-sidebar .brand-text{
+  color: #0095ff;
+}
+
+
+
+.nav-link.active{
+  // margin-left: 30px;
+}

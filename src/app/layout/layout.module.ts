@@ -3,25 +3,25 @@ import { CommonModule } from "@angular/common";
 
 import { LayoutRoutingModule } from "./layout-routing.module";
 import { BaseComponent } from "./base/base.component";
-import { AppfooterComponent } from "./appfooter/appfooter.component";
-import { sidebarComponent } from "./sidebar/sidebar.component";
-import { headerComponent } from "./header/header.component";
+import { SidebarComponent } from "./sidebar/sidebar.component";
+import { HeaderComponent } from "./header/header.component";
 import { MaterialModule } from "../material/material.module";
+import { FooterComponent } from "./footer/footer.component";
 
 @NgModule({
   declarations: [
     BaseComponent,
-    AppfooterComponent,
-    headerComponent,
-    sidebarComponent,
+    FooterComponent,
+    HeaderComponent,
+    SidebarComponent,
 
 
   ],
   exports:[
     BaseComponent,
-    AppfooterComponent,
-    headerComponent,
-    sidebarComponent,
+    FooterComponent,
+    HeaderComponent,
+    SidebarComponent,
 
     MaterialModule
   ],

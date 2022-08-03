@@ -68,47 +68,47 @@ const routes: Routes = [
         path: "mantenimientoPersonal",
         component: AppPersonalComponent,
         canActivate: [AuthGuard],
-      }, //FRANCIA 02/06/2021
+      },
       {
         path: "mantenimientoRecurso",
         component: AppRecursoComponent,
         canActivate: [AuthGuard],
-      }, //FRANCIA 02/06/2021
+      },
       {
         path: "asignarRecurso/:idPersonal",
         component: ApprecursopersonalComponent,
         canActivate: [AuthGuard],
-      }, //FRANCIA 02/06/2021
+      },
       {
         path: "recursoHardware/:idHardware",
         component: ApprecursohardwareComponent,
         canActivate: [AuthGuard],
-      }, //FRANCIA 02/06/2021
+      },
       {
         path: "recursoHardwareDetalle",
         component: ApprecursohardwaredetalleComponent,
         canActivate: [AuthGuard],
-      }, //FRANCIA 02/06/2021
+      },
       {
         path: "mantenimientoCuenta",
         component: AppCuentaComponent,
         canActivate: [AuthGuard],
-      }, //FRANCIA 02/06/2021
+      },
       {
         path: "recursoCuentaDetalle",
         component: ApprecursocuentadetalleComponent,
         canActivate: [AuthGuard],
-      }, //FRANCIA 02/06/2021
+      },
       {
         path: "recursoCuenta/:idCuenta",
         component: ApprecursocuentaComponent,
         canActivate: [AuthGuard],
-      }, //FRANCIA 02/06/2021
+      },
       {
         path: "entidad",
         component: AppEntidadComponent,
         canActivate: [AuthGuard],
-      }, //FRANCIA 02/06/2021
+      },
       {
         path: "mantenimientofacturacion",
         component: AppFacturacionComponent,

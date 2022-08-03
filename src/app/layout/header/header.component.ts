@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
   templateUrl: "./header.component.html",
   styleUrls: ["./header.component.sass"],
 })
-export class headerComponent implements OnInit {
+export class HeaderComponent implements OnInit {
   constructor(
     private authentication: AuthenticationService,
     private router: Router

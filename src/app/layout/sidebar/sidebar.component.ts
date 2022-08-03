@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Role } from "../../models/role";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 declare var $: any;
 
 @Component({
@@ -8,10 +8,10 @@ declare var $: any;
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.sass"],
 })
-export class sidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit {
   currentUser: any;
-  userFullName: String = "NA";
-  userProfile: String = "NA";
+  userFullName: String = "";
+  userProfile: String = "";
   role = Role;
 
   constructor(private router: Router) {}
@@ -19,13 +19,13 @@ export class sidebarComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     console.log("currentuser: ");
-    console.log(this.currentUser);
-    console.log(this.currentUser.user.userId);
-    this.userFullName =
-      this.currentUser.user.nombres +
-      " " +
-      this.currentUser.user.apellidoPaterno;
-    this.userProfile = this.currentUser.user.rolName;
+    console.log('USER', this.currentUser);
+    console.log('ID_usuario',this.currentUser.user.userId);
+
+    // this.userFullName = this.currentUser.user.nombres + "<br /> " + this.currentUser.user.apellidoPaterno;
+    this.userFullName = `${this.currentUser.user.nombres}  ${ this.currentUser.user.apellidoPaterno}`
+
+      this.userProfile = this.currentUser.user.rolName;
     // this.router.navigate(['/']);
     // window.location.reload();
     // $('[data-widget="treeview"]').Treeview('init');

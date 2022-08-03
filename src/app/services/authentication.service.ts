@@ -24,21 +24,21 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(loginData: any) {
-    const urlApiReq = environment.apiSeguridadUrl + "login";
-    return this.http.post<any>(urlApiReq, {loginData })
-      .pipe(
-        map((user) => {
-          localStorage.removeItem("currentUser");
-          localStorage.setItem("currentUser", JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          return user;
-        })
-      );
-  }
+  // login(loginData: any) {
+  //   const urlApiReq = environment.apiSeguridadUrl + "login";
+  //   return this.http.post<any>(urlApiReq, {loginData })
+  //     .pipe(
+  //       map((user) => {
+  //         localStorage.removeItem("currentUser");
+  //         localStorage.setItem("currentUser", JSON.stringify(user));
+  //         this.currentUserSubject.next(user);
+  //         return user;
+  //       })
+  //     );
+  // }
 
 
-  loginx(loginData: Usuario) {
+  login(loginData: Usuario) {
     const urlApiReq = environment.apiSeguridadUrl + "login";
 
     return this.http.post<any>(urlApiReq, loginData).pipe(

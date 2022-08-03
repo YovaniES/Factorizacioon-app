@@ -4,17 +4,16 @@
 <div class="main">
   <div class="col-md-6 col-sm-12">
     <div class="login-form">
-      <div style="font-size: 16px">Web Dynamo Support</div>
+      <div style="font-size: 20px;">Web Dynamo Support</div>
       <br />
       <form [formGroup]="loginForm">
         <div class="form-group">
-          <label>UsuarioX</label>
+          <label>Username</label>
           <input
             type="text"
             class="form-control"
             placeholder="Usuario"
-            formControlName="username"
-          />
+            formControlName="username"/>
           <small class="form-text text-danger" *ngIf="campoNoValido('username')">* Debe ingresar un usuario válido</small>
         </div>
         <div class="form-group">
@@ -23,16 +22,14 @@
             type="password"
             class="form-control"
             placeholder="Contraseña"
-            formControlName="password"
-          />
+            formControlName="password"/>
           <small class="form-text text-danger" *ngIf="campoNoValido('password')">* Debe ingresar un usuario válido</small>
         </div>
         <button
           type="button"
           class="btn btn-black"
           (click)="onSubmit()"
-          [disabled]="loginForm.invalid"
-        >
+          [disabled]="loginForm.invalid">
           Login
         </button>
       </form>
@@ -50,5 +47,5 @@
   type="square-jelly-box"
   [fullScreen]="true"
 >
-  <p style="color: white">Loading...</p>
+  <p style="color: white">Cargando...</p>
 </ngx-spinner>

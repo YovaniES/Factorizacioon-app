@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
 
     this.authentication
-      .loginx(this.loginForm.value)
+      .login(this.loginForm.value)
       .pipe(first())
       .subscribe(
         (resp) => {

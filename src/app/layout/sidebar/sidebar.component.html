@@ -20,7 +20,7 @@
         />
       </div>
       <div class="info">
-        <a href="#" class="d-block text-center">{{ userFullName }}</a>
+        <a class="d-block text-center">{{ userFullName }}</a>
         <p class="text-muted text-center">{{ userProfile }}</p>
       </div>
     </div>
@@ -37,7 +37,7 @@
              with font-awesome or any other icon font library -->
 
         <!--<li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a  class="nav-link">
                         <i class="nav-icon fas fa-list-alt"></i>
                         <p>
                             Requerimientos
@@ -63,54 +63,50 @@
                 </li>-->
         <!--FRANCIA 02/06/2021 INICIO-->
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-list-alt"></i>
-
-            <p>
-              <!-- <mat-icon class="icon-cent">login</mat-icon> -->
-              Gestión Personal
-              <i class="right fas fa-angle-left"></i>
-            </p>
+          <a class="nav-link">
+            <!-- <i class="nav-icon fas fa-list-alt"></i> -->
+            <i class="fa-solid fa-users"></i>
+            <p style="margin-left: 8px">Gestión Personal<i class="right fas fa-angle-left"></i></p>
           </a>
+
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a
-                routerLink="/mantenimientoPersonal"
+              <a routerLink="/mantenimientoPersonal"
                 routerLinkActive="active"
-                class="nav-link"              >
-                <!-- <i class="far fa-circle nav-icon"></i> -->
+                class="nav-link">
                 <i class="fas fa-user"></i>
-                <p>Personal</p>
+                <p style="margin-left: 8px">Personal</p>
               </a>
             </li>
           </ul>
+
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a
-                routerLink="/mantenimientoRecurso"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="far fa-circle nav-icon"></i>
-                <p>Recurso Hardware</p>
+              <a routerLink="/mantenimientoRecurso"
+                 routerLinkActive="active"
+                 class="nav-link">
+                <!-- <i class="fas fa-user"></i> -->
+                <!-- <i class="fa-solid fa-laptop-mobile"></i> -->
+                <i class="fa-brands fa-github-square"></i>
+                <p style="margin-left: 8px">Recurso Hardware</p>
               </a>
             </li>
           </ul>
+
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a
-                routerLink="/mantenimientoCuenta"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="far fa-circle nav-icon"></i>
+              <a routerLink="/mantenimientoCuenta"
+                 routerLinkActive="active"
+                 class="nav-link"
+                 ><i class="far fa-circle nav-icon"></i>
                 <p>Recurso Cuenta</p>
               </a>
             </li>
           </ul>
         </li>
+
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a  class="nav-link">
             <i class="nav-icon fas fa-list-alt"></i>
             <p>
               Mantenimiento
@@ -119,19 +115,18 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a
-                routerLink="/entidad"
-                routerLinkActive="active"
-                class="nav-link"
-              >
-                <i class="far fa-circle nav-icon"></i>
+              <a routerLink="/entidad"
+                 routerLinkActive="active"
+                 class="nav-link"
+                ><i class="far fa-circle nav-icon"></i>
                 <p>Entidad</p>
               </a>
             </li>
           </ul>
         </li>
+
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+          <a  class="nav-link">
             <i class="nav-icon fas fa-list-alt"></i>
             <p>
               Facturación
