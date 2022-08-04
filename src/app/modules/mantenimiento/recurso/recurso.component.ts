@@ -8,12 +8,11 @@ import { Router } from "@angular/router";
 
 @Component({
   selector: "app-appreqbandeja",
-  templateUrl: "./apprecurso.component.html",
-  //styleUrls: ['./apprecurso.component.sass']
+  templateUrl: "./recurso.component.html",
+  //styleUrls: ['./recurso.component.scss']
   styles: ["#icono{color:dodgerblue} #icono:hover {color:blue}"],
 })
-export class AppRecursoComponent implements OnInit {
-  /*FRANCIA*/
+export class RecursoComponent implements OnInit {
   idEstadoBuscar;
   idTipoBuscar: any;
   idMarcaBuscar: any;

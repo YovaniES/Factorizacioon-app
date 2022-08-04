@@ -8,12 +8,12 @@ import { Router } from "@angular/router";
 
 @Component({
   selector: "app-appcuenta",
-  templateUrl: "./appcuenta.component.html",
-  //styleUrls: ['./apprecurso.component.sass']
+  templateUrl: "./cuenta.component.html",
+  //styleUrls: ['./recurso.component.scss']
   styles: ["#icono{color:dodgerblue} #icono:hover {color:blue}"],
 })
-export class AppCuentaComponent implements OnInit {
-  /*FRANCIA*/
+export class CuentaComponent implements OnInit {
+
   datosTipo = {
     nombre: "",
     descripcion: "",

@@ -11,10 +11,10 @@ import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-recursopersonal",
-  templateUrl: "./apprecursopersonal.component.html",
-  styleUrls: ["./apprecursopersonal.component.sass"],
+  templateUrl: "./recursopersonal.component.html",
+  styleUrls: ["./recursopersonal.component.scss"],
 })
-export class ApprecursopersonalComponent implements OnInit {
+export class RecursopersonalComponent implements OnInit {
   datosPersonalEditar = {
     id: "",
     nombre: "",
@@ -269,14 +269,12 @@ export class ApprecursopersonalComponent implements OnInit {
       this.listaCuentaAsignado = [];
       for (let index = 0; index < arrayData[0].list.length; index++) {
         this.listaCuentaAsignado.push({
-          id: arrayData[0].list[index].id,
-          usuario: arrayData[0].list[index].usuario,
-          password: arrayData[0].list[index].password,
-          tipo: arrayData[0].list[index].tipo,
-          fechaUltimaRenovacion:
-            arrayData[0].list[index].fecha_ultima_renovacion,
-          fechaProximaRenovacion:
-            arrayData[0].list[index].fecha_proxima_renovacion,
+          id                    : arrayData[0].list[index].id,
+          usuario               : arrayData[0].list[index].usuario,
+          password              : arrayData[0].list[index].password,
+          tipo                  : arrayData[0].list[index].tipo,
+          fechaUltimaRenovacion : arrayData[0].list[index].fecha_ultima_renovacion,
+          fechaProximaRenovacion: arrayData[0].list[index].fecha_proxima_renovacion,
         });
       }
       this.spinner.hide();
@@ -334,26 +332,20 @@ export class ApprecursopersonalComponent implements OnInit {
     this._service.getPersonalId(arrayParametro[0]).subscribe((data) => {
       const arrayData: any[] = Array.of(data);
       for (let index = 0; index < arrayData[0].list.length; index++) {
-        this.datosPersonalEditar.id = arrayData[0].list[index].id;
-        this.datosPersonalEditar.nombre = arrayData[0].list[index].nombres;
-        this.datosPersonalEditar.apellidoPaterno =
-          arrayData[0].list[index].apellido_paterno;
-        this.datosPersonalEditar.apellidoMaterno =
-          arrayData[0].list[index].apellido_materno;
-        this.datosPersonalEditar.correo = arrayData[0].list[index].correo;
-        this.datosPersonalEditar.dni = arrayData[0].list[index].dni;
-        this.datosPersonalEditar.codCorporativo =
-          arrayData[0].list[index].codigo_corporativo;
-        this.datosPersonalEditar.perfil = arrayData[0].list[index].perfil;
-        this.datosPersonalEditar.codPerfil = arrayData[0].list[index].id_perfil;
-        this.datosPersonalEditar.proyecto =
-          arrayData[0].list[index].codigo_proyecto;
-        this.datosPersonalEditar.codProyecto =
-          arrayData[0].list[index].id_codigo_proyecto;
-        this.datosPersonalEditar.proyectoDescripcion =
-          arrayData[0].list[index].proyecto_descripcion;
-        //this.datosPersonalEditar.fechaNacimiento = arrayData[0].list[index].fecha_nacimiento;
+        this.datosPersonalEditar.id                  = arrayData[0].list[index].id;
+        this.datosPersonalEditar.nombre              = arrayData[0].list[index].nombres;
+        this.datosPersonalEditar.apellidoPaterno     = arrayData[0].list[index].apellido_paterno;
+        this.datosPersonalEditar.apellidoMaterno     = arrayData[0].list[index].apellido_materno;
+        this.datosPersonalEditar.correo              = arrayData[0].list[index].correo;
+        this.datosPersonalEditar.dni                 = arrayData[0].list[index].dni;
+        this.datosPersonalEditar.codCorporativo      = arrayData[0].list[index].codigo_corporativo;
+        this.datosPersonalEditar.perfil              = arrayData[0].list[index].perfil;
+        this.datosPersonalEditar.codPerfil           = arrayData[0].list[index].id_perfil;
+        this.datosPersonalEditar.proyecto            = arrayData[0].list[index].codigo_proyecto;
+        this.datosPersonalEditar.codProyecto         = arrayData[0].list[index].id_codigo_proyecto;
+        this.datosPersonalEditar.proyectoDescripcion = arrayData[0].list[index].proyecto_descripcion;
 
+        //this.datosPersonalEditar.fechaNacimiento = arrayData[0].list[index].fecha_nacimiento;
         //this.datosPersonalEditar.fechaIngreso = arrayData[0].list[index].fecha_ingreso;
         //this.datosPersonalEditar.fechaNacimiento = arrayData[0].list[index].fecha_nacimiento;
 
@@ -449,16 +441,16 @@ export class ApprecursopersonalComponent implements OnInit {
   updatePersonal() {
     this.spinner.show();
     this.btnEditarPersonal.nativeElement.disabled = true;
-    let nombre = this.datosPersonalEditar.nombre;
+    let nombre          = this.datosPersonalEditar.nombre;
     let apellidoPaterno = this.datosPersonalEditar.apellidoPaterno;
     let apellidoMaterno = this.datosPersonalEditar.apellidoMaterno;
-    let correo = this.datosPersonalEditar.correo;
-    let dni = this.datosPersonalEditar.dni;
-    let codCorporativo = this.datosPersonalEditar.codCorporativo;
-    let codPerfil = this.datosPersonalEditar.codPerfil;
-    let codProyecto = this.datosPersonalEditar.codProyecto;
+    let correo          = this.datosPersonalEditar.correo;
+    let dni             = this.datosPersonalEditar.dni;
+    let codCorporativo  = this.datosPersonalEditar.codCorporativo;
+    let codPerfil       = this.datosPersonalEditar.codPerfil;
+    let codProyecto     = this.datosPersonalEditar.codProyecto;
     let fechaNacimiento = this.datosPersonalEditar.fechaNacimiento;
-    let fechaIngreso = this.datosPersonalEditar.fechaIngreso;
+    let fechaIngreso    = this.datosPersonalEditar.fechaIngreso;
     let estadoPersonal: any;
     if (this.datosPersonalEditar.estado == "Activo") {
       estadoPersonal = 1;

@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { EmailService } from "../../../services/email.service";
 import { DatePipe } from "@angular/common";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from "@angular/router";
-import { Usuario } from "../../../models/usuario";
-import { Role } from "../../../models/role";
-import { MantenimientoService } from "../../../services/mantenimiento.service";
 import { ToastrService } from "ngx-toastr";
+import { Usuario } from "src/app/models/usuario";
+import { MantenimientoService } from "src/app/services/mantenimiento.service";
+import { Role } from "src/app/models/role";
+import { EmailService } from "src/app/services/email.service";
 
 @Component({
   selector: "app-entidad",
-  templateUrl: "./appentidad.component.html",
-  styleUrls: ["./appentidad.component.css"],
+  templateUrl: "./entidad.component.html",
+  styleUrls: ["./entidad.component.scss"],
 })
-export class AppEntidadComponent implements OnInit {
+export class EntidadComponent implements OnInit {
   paginaInicioT: number;
   datosInfoEntidad = {
     nombre: "",
@@ -32,8 +32,7 @@ export class AppEntidadComponent implements OnInit {
   @ViewChild("btnInfoEntidad") btnInfoEntidad: ElementRef;
   @ViewChild("tablaEntidad1") tablaEntidad1: ElementRef;
   @ViewChild("tablaEntidad2") tablaEntidad2: ElementRef;
-  @ViewChild("cerrarModalEditarInfoEntidad")
-  cerrarModalEditarInfoEntidad: ElementRef;
+  @ViewChild("cerrarModalEditarInfoEntidad") cerrarModalEditarInfoEntidad: ElementRef;
   @ViewChild("btnEditarInfoEntidad") btnEditarInfoEntidad: ElementRef;
 
   totaltablas = {
@@ -66,9 +65,7 @@ export class AppEntidadComponent implements OnInit {
   role = Role;
 
   constructor(
-    private _Activatedroute: ActivatedRoute,
     private _service: MantenimientoService,
-    private _emailService: EmailService,
     public datepipe: DatePipe,
     private spinner: NgxSpinnerService,
     private router: Router,

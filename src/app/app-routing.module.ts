@@ -9,19 +9,20 @@ import { NewPasswordComponent } from "./new-password/new-password.component";
 import { StatusSolicitudComponent } from "./status-solicitud/status-solicitud.component";
 import { PuntosFuncionMaintenanceComponent } from "./puntos-funcion-maintenance/puntos-funcion-maintenance.component";
 import { StatusIncidenciasComponent } from "./modules/bandeja/status-incidencias/status-incidencias.component";
-import { AppPersonalComponent } from "./modules/mantenimiento/app-personal/apppersonal.component";
-import { AppRecursoComponent } from "./modules/mantenimiento/app-recurso/apprecurso.component";
-import { ApprecursopersonalComponent } from "./modules/mantenimiento/apprecursopersonal/apprecursopersonal.component";
-import { ApprecursohardwareComponent } from "./modules/mantenimiento/apprecursohardware/apprecursohardware.component";
-import { ApprecursohardwaredetalleComponent } from "./modules/mantenimiento/apprecursohardwaredetalle/apprecursohardwaredetalle.component";
-import { AppCuentaComponent } from "./modules/mantenimiento/app-cuenta/appcuenta.component";
-import { ApprecursocuentadetalleComponent } from "./modules/mantenimiento/apprecursocuentadetalle/apprecursocuentadetalle.component";
-import { ApprecursocuentaComponent } from "./modules/mantenimiento/apprecursocuenta/apprecursocuenta.component";
-import { AppEntidadComponent } from "./modules/entidades/appentidad/appentidad.component";
+import { PersonalComponent } from "./modules/mantenimiento/personal/personal.component";
+import { RecursoComponent } from "./modules/mantenimiento/recurso/recurso.component";
+import { RecursopersonalComponent } from "./modules/mantenimiento/recursopersonal/recursopersonal.component";
+import { RecursohardwareComponent } from "./modules/mantenimiento/recursohardware/recursohardware.component";
+import { RecursohardwaredetalleComponent } from "./modules/mantenimiento/recursohardwaredetalle/recursohardwaredetalle.component";
+import { CuentaComponent } from "./modules/mantenimiento/cuenta/cuenta.component";
+import { RecursocuentadetalleComponent } from "./modules/mantenimiento/recursocuentadetalle/recursocuentadetalle.component";
+import { RecursocuentaComponent } from "./modules/mantenimiento/recursocuenta/recursocuenta.component";
+// import { EntidadComponent } from "./modules/entidad/appentidad/entidad.component";
 import { AppFacturacionComponent } from "./modules/facturacion/appregistrobandeja/appregistrobandeja.component";
 import { AddRegistroComponent } from "./modules/facturacion/add-registro-audio/add-registro-audio.component";
 import { EditFacturacionComponent } from "./modules/facturacion/edit-registro-audio/edit-registro-audio.component";
 import { BaseComponent } from "./layout/base/base.component";
+import { EntidadComponent } from "./modules/entidad/entidad.component";
 
 const routes: Routes = [
   {
@@ -66,47 +67,47 @@ const routes: Routes = [
       },
       {
         path: "mantenimientoPersonal",
-        component: AppPersonalComponent,
+        component: PersonalComponent,
         canActivate: [AuthGuard],
       },
       {
         path: "mantenimientoRecurso",
-        component: AppRecursoComponent,
+        component: RecursoComponent,
         canActivate: [AuthGuard],
       },
       {
         path: "asignarRecurso/:idPersonal",
-        component: ApprecursopersonalComponent,
+        component: RecursopersonalComponent,
         canActivate: [AuthGuard],
       },
       {
         path: "recursoHardware/:idHardware",
-        component: ApprecursohardwareComponent,
+        component: RecursohardwareComponent,
         canActivate: [AuthGuard],
       },
       {
         path: "recursoHardwareDetalle",
-        component: ApprecursohardwaredetalleComponent,
+        component: RecursohardwaredetalleComponent,
         canActivate: [AuthGuard],
       },
       {
         path: "mantenimientoCuenta",
-        component: AppCuentaComponent,
+        component: CuentaComponent,
         canActivate: [AuthGuard],
       },
       {
         path: "recursoCuentaDetalle",
-        component: ApprecursocuentadetalleComponent,
+        component: RecursocuentadetalleComponent,
         canActivate: [AuthGuard],
       },
       {
         path: "recursoCuenta/:idCuenta",
-        component: ApprecursocuentaComponent,
+        component: RecursocuentaComponent,
         canActivate: [AuthGuard],
       },
       {
         path: "entidad",
-        component: AppEntidadComponent,
+        component: EntidadComponent,
         canActivate: [AuthGuard],
       },
       {

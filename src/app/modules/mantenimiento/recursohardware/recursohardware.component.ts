@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { EmailService } from "../../../services/email.service";
 import { DatePipe } from "@angular/common";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from "@angular/router";
@@ -11,10 +10,10 @@ import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-recursopersonal",
-  templateUrl: "./apprecursohardware.component.html",
-  styleUrls: ["./apprecursohardware.component.sass"],
+  templateUrl: "./recursohardware.component.html",
+  styleUrls: ["./recursohardware.component.scss"],
 })
-export class ApprecursohardwareComponent implements OnInit {
+export class RecursohardwareComponent implements OnInit {
   idHardware: any = 0;
   //@ViewChild('cerrarModalCuenta') cerrarModalCuenta:ElementRef;
   //@ViewChild('cerrarModalHardware') cerrarModalHardware:ElementRef;
@@ -39,7 +38,6 @@ export class ApprecursohardwareComponent implements OnInit {
   constructor(
     private _Activatedroute: ActivatedRoute,
     private _service: MantenimientoService,
-    private _emailService: EmailService,
     public datepipe: DatePipe,
     private spinner: NgxSpinnerService,
     private router: Router,
@@ -82,14 +80,14 @@ export class ApprecursohardwareComponent implements OnInit {
     this._service.getHardwareId(arrayParametro[0]).subscribe((data) => {
       const arrayData: any[] = Array.of(data);
       for (let index = 0; index < arrayData[0].list.length; index++) {
-        this.datosHardware.tipo = arrayData[0].list[index].tipo;
-        this.datosHardware.marca = arrayData[0].list[index].marca;
-        this.datosHardware.idTipo = arrayData[0].list[index].id_tipo;
-        this.datosHardware.idMarca = arrayData[0].list[index].id_marca;
+        this.datosHardware.tipo        = arrayData[0].list[index].tipo;
+        this.datosHardware.marca       = arrayData[0].list[index].marca;
+        this.datosHardware.idTipo      = arrayData[0].list[index].id_tipo;
+        this.datosHardware.idMarca     = arrayData[0].list[index].id_marca;
         this.datosHardware.descripcion = arrayData[0].list[index].descripcion;
-        this.datosHardware.modelo = arrayData[0].list[index].modelo;
-        this.datosHardware.serie = arrayData[0].list[index].serie;
-        this.datosHardware.imei = arrayData[0].list[index].imei;
+        this.datosHardware.modelo      = arrayData[0].list[index].modelo;
+        this.datosHardware.serie       = arrayData[0].list[index].serie;
+        this.datosHardware.imei        = arrayData[0].list[index].imei;
         this.datosHardware.observacion = arrayData[0].list[index].observacion;
       }
       this.spinner.hide();
@@ -148,12 +146,12 @@ export class ApprecursohardwareComponent implements OnInit {
 
   updateRecursoHardware() {
     this.spinner.show();
-    let idTipo = this.datosHardware.idTipo;
-    let idMarca = this.datosHardware.idMarca;
+    let idTipo      = this.datosHardware.idTipo;
+    let idMarca     = this.datosHardware.idMarca;
     let descripcion = this.datosHardware.descripcion;
-    let modelo = this.datosHardware.modelo;
-    let serie = this.datosHardware.serie;
-    let imei = this.datosHardware.imei;
+    let modelo      = this.datosHardware.modelo;
+    let serie       = this.datosHardware.serie;
+    let imei        = this.datosHardware.imei;
     let observacion = this.datosHardware.observacion;
 
     let arrayParametro: any[] = [

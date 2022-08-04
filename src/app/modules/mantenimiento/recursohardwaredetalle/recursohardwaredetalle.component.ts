@@ -17,10 +17,10 @@ import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-recursopersonal",
-  templateUrl: "./apprecursohardwaredetalle.component.html",
-  styleUrls: ["./apprecursohardwaredetalle.component.sass"],
+  templateUrl: "./recursohardwaredetalle.component.html",
+  styleUrls: ["./recursohardwaredetalle.component.scss"],
 })
-export class ApprecursohardwaredetalleComponent implements OnInit {
+export class RecursohardwaredetalleComponent implements OnInit {
   paginaInicioT: number;
   paginaInicioM: number;
   totalItemsH: number;

@@ -8,10 +8,10 @@ import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-appreqbandeja",
-  templateUrl: "./apppersonal.component.html",
-  styleUrls: ["./apppersonal.component.css"],
+  templateUrl: "./personal.component.html",
+  styleUrls: ["./personal.component.scss"],
 })
-export class AppPersonalComponent implements OnInit {
+export class PersonalComponent implements OnInit {
   /*FRANCIA*/
   informacionDeBaja: any;
   tituloDeBaja: any;

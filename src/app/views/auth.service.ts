@@ -28,75 +28,14 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  /*   get usuario() {
-    return { ...this._usuario };
-  }
-
-  loginHISPAN(username: string, password: string) {
-    const url =
-      'https://aks-hispam-dev.eastus.cloudapp.azure.com/third/v1/api/login';
-    const body = { username, password };
-
-    return this.http.post<AuthResponse>(url, body).pipe(
-      tap((resp) => {
-        if (resp.logged) {
-          localStorage.setItem('token', resp.token!);
-          this._usuario = {
-            username: resp.username!,
-            password: resp.password!,
-          };
-        }
-      }),
-      map((valid) => valid.logged),
-      catchError((err) => of(err.error.msg))
-    );
-  } */
-
   logout() {
     // this.router.navigateByUrl('public/qr');
     localStorage.clear();
   }
 
-  /*   getUsername() {
-    const decodedToken: any = this.decodeToken();
-    return decodedToken ? decodedToken.displayname : '';
-  } */
-
-  /*   decodeToken() {
-    const token = this.getToken();
-    if (token) {
-      return jwt_decode(token);
-    } else {
-      return null;
-    }
-  } */
-
   getToken() {
     return localStorage.getItem("token");
   }
-
-  /*   isLoggedIn(): boolean {
-    const token = this.getToken();
-    let validSession = false;
-    let decodedToken: any = null;
-
-    try {
-      if (token) {
-        decodedToken = jwt_decode(token);
-      }
-
-      if (
-        decodedToken &&
-        decodedToken.exp &&
-        decodedToken.exp > Date.now() / 1000
-      ) {
-        validSession = true;
-      }
-      return validSession;
-    } catch (err) {
-      return false;
-    }
-  } */
 
   /* OJO SERVCIO DE AUTENTICACION */
   login(usuario: string, password: string) {
